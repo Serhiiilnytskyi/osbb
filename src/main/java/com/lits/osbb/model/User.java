@@ -1,4 +1,4 @@
-package main.model;
+package com.lits.osbb.model;
 
 import javax.persistence.*;
 import java.util.Set;
