@@ -1,4 +1,4 @@
-package com.lits.osbb.entities;
+package com.lits.osbb.model;
 
 public interface Post {
     public void makePost();

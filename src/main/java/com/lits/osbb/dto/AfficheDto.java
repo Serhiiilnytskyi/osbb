@@ -1,6 +1,6 @@
-package com.lits.osbb.dtos;
+package com.lits.osbb.dto;
 
-import com.lits.osbb.entities.Affiche;
+import com.lits.osbb.model.Affiche;
 import org.apache.tomcat.jni.User;
 
 import javax.persistence.Column;
