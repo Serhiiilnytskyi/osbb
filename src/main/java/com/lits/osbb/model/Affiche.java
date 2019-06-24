@@ -1,4 +1,4 @@
-package com.lits.osbb.entities;
+package com.lits.osbb.model;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
