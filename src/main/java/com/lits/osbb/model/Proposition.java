@@ -1,9 +1,12 @@
 package com.lits.osbb.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+@Data
 @Entity
 @Table
 public class Proposition implements Serializable {
@@ -18,6 +21,7 @@ public class Proposition implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "proposition", cascade = CascadeType.ALL)
     private Set<Vote> votes;
+
 
     public Long getId() {
         return id;

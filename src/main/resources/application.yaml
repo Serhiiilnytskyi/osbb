@@ -1,0 +1,21 @@
+
+spring:
+
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/osbb?serverTimezone=UTC
+    username: serhii
+    password: F,hfrflf,hf314
+
+security:
+  token:
+    secret: 9DKxk4ZuRV7SoyIR4s5Szh79a1zwIm8q
+    expire: 24
+
+#liquibase:
+#change-log: classpath:/changelog/db.changelog-master.yaml
