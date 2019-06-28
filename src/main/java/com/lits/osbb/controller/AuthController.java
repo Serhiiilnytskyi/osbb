@@ -2,6 +2,7 @@ package com.lits.osbb.controller;
 
 import com.lits.osbb.dto.AuthRequest;
 import com.lits.osbb.service.AuthService;
+import com.lits.osbb.service.impl.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api")
 public class AuthController {
 
-    private AuthService authService;
+    private AuthServiceImpl authService;
 
     @Autowired
-    public AuthController(AuthService authService) {
+    public AuthController(AuthServiceImpl authService) {
         this.authService = authService;
     }
 
