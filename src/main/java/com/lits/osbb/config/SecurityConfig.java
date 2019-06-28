@@ -28,6 +28,13 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"
+    };
+
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
 
@@ -70,14 +77,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                 .authorizeRequests()
-                    .antMatchers("/**/login")
+                    .antMatchers("/api/login")
                         .permitAll()
                     .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
                         .permitAll()
 //                    .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 //                    .antMatchers("/api/user").hasRole("ADMIN")
-                .anyRequest()
-                .authenticated();
+                    .anyRequest()
+                        .authenticated()
+
+                ;
 
         httpSecurity
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
