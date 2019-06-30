@@ -40,7 +40,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         logger.info("checking authentication for user " + accountId);
 
         if (accountId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            JwtUser jwtUser = JwtUserFactory.create(accountId, userService.getAuthority(userService.findById(accountId)));
+            JwtUser jwtUser = JwtUserFactory.create(accountId, userService.getAuthority(userService.findOne(accountId)));
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(jwtUser, null, jwtUser.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             logger.info("authenticated user " + accountId + ", setting security context");

@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return authorities;
     }
 
-    public User findById(Long id) {
+    public User findOne(Long id) {
         return userRepository.findOne(id);
     }
 }
