@@ -1,4 +1,5 @@
 package com.lits.osbb.service.impl;
+
 import com.lits.osbb.dto.AfficheDto;
 import com.lits.osbb.model.Affiche;
 import com.lits.osbb.repository.AfficheRepository;
@@ -51,6 +52,5 @@ public class AfficheServiceImpl implements AfficheService {
 
     public void delete(Long id){
         afficheRepository.delete(id);
-    };
-
+    }
 }

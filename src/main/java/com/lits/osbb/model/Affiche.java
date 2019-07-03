@@ -11,15 +11,10 @@ public class Affiche implements Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
     private String body;
-
     private Date beginDate;
-
     private Date endDate;
-
     @ManyToOne
     private User author;
 }
