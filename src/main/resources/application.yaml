@@ -8,8 +8,8 @@ spring:
 
   datasource:
     url: jdbc:mysql://localhost:3306/osbb?serverTimezone=UTC
-    username: root
-    password: root
+    username: serhii
+    password: F,hfrflf,hf314
 
 security:
   token:

@@ -12,13 +12,12 @@ import java.util.Set;
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id", unique = true, nullable = false)
         private Long id;
 
-        @Column(name = "first_name", unique = true, nullable = false)
+        @Column(name = "first_name", nullable = false)
         private String firstName;
 
-        @Column(name = "second_name", unique = true, nullable = false)
+        @Column(name = "second_name", nullable = false)
         private String secondName;
 
         @Column(name = "email", unique = true)
@@ -26,6 +25,12 @@ import java.util.Set;
 
         @Column(name = "password")
         private String password;
+
+        @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+        @JoinTable(name="user_addresses",
+                joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
+                inverseJoinColumns = {@JoinColumn(name="address_id", referencedColumnName="id")})
+        private Set<Address> address;
 
         @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
         @JoinTable(name="user_roles",
