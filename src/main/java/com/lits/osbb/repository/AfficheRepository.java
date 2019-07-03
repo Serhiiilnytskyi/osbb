@@ -7,6 +7,4 @@ public interface AfficheRepository extends JpaRepository<Affiche, Long> {
 
     Affiche findOneById (Long Id);
 
-
-
 }

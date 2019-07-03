@@ -10,16 +10,11 @@ import java.util.Date;
 public class Affiche implements Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Double id;
-
+    private Long id;
     private String title;
-
     private String body;
-
     private Date beginDate;
-
     private Date endDate;
-
-    //TODO  Add multiplicity with User Entity
-//    private User author;
+    @ManyToOne
+    private User author;
 }

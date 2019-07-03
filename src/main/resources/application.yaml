@@ -15,9 +15,6 @@ security:
   token:
     secret: 9DKxk4ZuopLtywwSoyIR45mdLOiPa1zw
     expire: 24
-#
-#server:
-#  servlet-path: /api
 
 #liquibase:
 #change-log: classpath:/changelog/db.changelog-master.yaml
