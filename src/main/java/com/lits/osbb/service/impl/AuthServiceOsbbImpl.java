@@ -1,6 +1,8 @@
 package com.lits.osbb.service.impl;
 
+import com.lits.osbb.model.Osbb;
 import com.lits.osbb.model.User;
+import com.lits.osbb.repository.OsbbRepository;
 import com.lits.osbb.repository.UserRepository;
 import com.lits.osbb.service.AuthService;
 import com.lits.osbb.service.TokenService;
@@ -13,8 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service(value = "authService")
-public class AuthServiceImpl implements AuthService {
+@Service(value = "authServiceOsbb")
+public class AuthServiceOsbbImpl implements AuthService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -23,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
     private TokenService tokenService;
 
     @Autowired
-    private UserRepository userRepository;
+    private OsbbRepository osbbRepository;
 
     @Override
     public String auth(String login, String pass) {
@@ -34,15 +36,15 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
 
-        log.info("Attempting create token for user " + login);
+        log.info("Attempting create token for osbb " + login);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        User user = userRepository.findByEmail(login);
+        Osbb osbb = osbbRepository.findByEmail(login);
 
-        if (user == null || user.equals(new User())){
-            log.warn("Got null or empty Person Object from repository after saving it");
+        if (osbb == null || osbb.equals(new Osbb())){
+            log.warn("Got null or empty Osbb Object from repository after saving it");
         }
 
-        return tokenService.createToken(user.getId());
+        return tokenService.createToken(osbb.getId());
     }
 }
