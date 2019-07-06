@@ -1,4 +1,4 @@
-package com.lits.osbb.service.impl;
+package com.lits.osbb.service;
 
 import com.lits.osbb.dto.VotingPostDto;
 
@@ -10,11 +10,11 @@ public interface VotingPostService {
 
     VotingPostDto delete(VotingPostDto votingPostDto);
 
-    VotingPostDto findById(Long id);
+    VotingPostDto getById(Long id);
 
-    VotingPostDto findByTitleContains(String title);
+    VotingPostDto getByTitleContains(String title);
 
-    VotingPostDto findByAuthor(String title);
+    VotingPostDto getByAuthor(String title);
 
 
 }
