@@ -1,7 +1,6 @@
 package com.lits.osbb.service;
 
 import com.lits.osbb.dto.PropositionDto;
-import com.lits.osbb.model.Proposition;
 
 import java.util.List;
 
