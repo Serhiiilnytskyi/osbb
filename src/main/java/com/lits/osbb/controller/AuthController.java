@@ -1,6 +1,7 @@
 package com.lits.osbb.controller;
 
 import com.lits.osbb.dto.AuthRequest;
+import com.lits.osbb.dto.UserDto;
 import com.lits.osbb.service.AuthService;
 import com.lits.osbb.service.impl.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class AuthController {
     @PostMapping(value = "/login")
     public ResponseEntity<?> auth(@RequestBody AuthRequest auth){
         return ResponseEntity.ok(authService.auth(auth.getEmail(), auth.getPassword()));
+    }
+
+    @PostMapping(value = "/registration")
+    public ResponseEntity<?> registration(@RequestBody UserDto userDto){
+        return ResponseEntity.ok(authService.registration(userDto));
     }
 
 }
