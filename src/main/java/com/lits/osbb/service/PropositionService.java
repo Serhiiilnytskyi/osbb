@@ -8,6 +8,8 @@ public interface PropositionService {
 
     PropositionDto findOne(Long id);
 
+    PropositionDto findOneByTitle(String title);
+
     List<PropositionDto> findAll();
 
     PropositionDto save(PropositionDto propositionDto);

@@ -21,4 +21,5 @@ public class Proposition implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "proposition", cascade = CascadeType.ALL)
     private Set<Vote> votes;
+
 }
