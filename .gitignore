@@ -30,7 +30,12 @@ build/
 ### VS Code ###
 .vscode/
 
-
 ### Property files ###
 application.yaml
 application.properties
+
+### Maven files ###
+.mvn/
+mvnw
+mvnw.cmd
+
