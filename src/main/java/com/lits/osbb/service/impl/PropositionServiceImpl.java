@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 public class PropositionServiceImpl implements PropositionService {
 
     @Autowired
-    PropositionRepository propositionRepository;
+    private PropositionRepository propositionRepository;
 
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @Override
     public PropositionDto findOne(Long id) {
@@ -36,16 +36,6 @@ public class PropositionServiceImpl implements PropositionService {
 
     @Override
     public List<PropositionDto> findAll() {
-
-//        Пропоную зробити так , якщо не буде пропозицій буде видавати ексепшн
-//        List<PropositionDto> resultList = propositionRepository.findAll().stream()
-//                .map(e->modelMapper.map(e, PropositionDto.class))
-//                .collect(Collectors.toList());
-//
-//        if(resultList.isEmpty()){throw new PropositionNotFoundException("There are no propositions");}
-//
-//        else return resultList;
-
         return propositionRepository.findAll().stream()
                 .map(e -> modelMapper.map(e, PropositionDto.class))
                 .collect(Collectors.toList());

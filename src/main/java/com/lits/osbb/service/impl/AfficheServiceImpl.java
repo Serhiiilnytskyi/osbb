@@ -10,13 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class AfficheServiceImpl implements AfficheService {
 
     @Autowired
-    AfficheRepository afficheRepository;
+    private AfficheRepository afficheRepository;
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
 
 
@@ -27,7 +28,7 @@ public class AfficheServiceImpl implements AfficheService {
     }
 
     public List<AfficheDto> findAll(){
-        return afficheRepository.findAll().stream()
+        return StreamSupport.stream(afficheRepository.findAll().spliterator(), false)
                 .map(e -> modelMapper.map(e, AfficheDto.class))
                 .collect(Collectors.toList());
     }

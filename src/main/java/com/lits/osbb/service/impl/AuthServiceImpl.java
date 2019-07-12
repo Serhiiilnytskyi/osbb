@@ -52,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
 
     public String registration(UserDto userDto) {
         return null;
-        //todo complete method
+        //todo finish method
     }
 
 }
