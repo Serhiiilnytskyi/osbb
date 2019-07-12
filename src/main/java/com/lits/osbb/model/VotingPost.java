@@ -24,9 +24,11 @@ public class VotingPost {
 
     private Date endDate;
 
-    private List<Vote> voteList;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "votingPost", cascade = CascadeType.ALL)
+    private List<Vote> votes;
 
-    //TODO Correct this relationship
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User author;
+
 }

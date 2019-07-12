@@ -41,7 +41,7 @@ public class OsbbApplication implements ApplicationRunner {
                     add(role);
                 }});
                 user.setPassword(passwordEncoder.encode("admin"));
-
+                user.setIsOsbb(true);
         userRepository.save(user);
 
     }

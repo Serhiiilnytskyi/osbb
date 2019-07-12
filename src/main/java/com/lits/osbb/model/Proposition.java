@@ -20,7 +20,7 @@ public class Proposition implements Serializable {
 
     private String body;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "proposition", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposition", cascade = CascadeType.ALL)
     private Set<Vote> votes;
 
 }

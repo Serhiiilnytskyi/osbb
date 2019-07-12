@@ -5,10 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
+@Table
 public class InformationPost implements Post {
 
     @Id
@@ -23,7 +25,7 @@ public class InformationPost implements Post {
 
     private Date endDate;
 
-    //TODO Correct this relationship
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User author;
 }

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service
+@Service(value = "userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     //TODO implement UserDto to service

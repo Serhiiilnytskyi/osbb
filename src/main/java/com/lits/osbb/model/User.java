@@ -26,11 +26,15 @@ public class User {
 
     private Boolean isOsbb;
 
-    @ManyToOne
-    private User osbb;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "osbb_id")
+    private User osbbId;
 
-    @OneToMany(mappedBy="osbb", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "osbbId", cascade = CascadeType.ALL)
     private List<User> osbbUsers;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    List<Vote> votes;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "user_address",
