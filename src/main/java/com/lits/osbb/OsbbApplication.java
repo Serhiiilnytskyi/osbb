@@ -33,15 +33,14 @@ public class OsbbApplication implements ApplicationRunner {
 
         role.setName("ADMIN");
 
-        User user = User.builder()
-                .firstName("admin")
-                .secondName("admin")
-                .email("admin@gmail.com")
-                .roles(new HashSet<Role>() {{
+        User user = new User();
+                user.setFirstName("admin");
+                user.setSecondName("admin");
+                user.setEmail("admin@gmail.com");
+                user.setRoles(new HashSet<Role>() {{
                     add(role);
-                }})
-                .password(passwordEncoder.encode("admin"))
-                .build();
+                }});
+                user.setPassword(passwordEncoder.encode("admin"));
 
         userRepository.save(user);
 

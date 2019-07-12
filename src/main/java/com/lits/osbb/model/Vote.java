@@ -11,7 +11,6 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "proposition_id", nullable = false)
     Proposition proposition;

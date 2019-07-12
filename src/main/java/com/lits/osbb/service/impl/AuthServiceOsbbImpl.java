@@ -1,13 +1,12 @@
 package com.lits.osbb.service.impl;
 
-import com.lits.osbb.dto.UserDto;
-import com.lits.osbb.exception.UserNotFoundException;
+import com.lits.osbb.model.Osbb;
 import com.lits.osbb.model.User;
+import com.lits.osbb.repository.OsbbRepository;
 import com.lits.osbb.repository.UserRepository;
 import com.lits.osbb.service.AuthService;
 import com.lits.osbb.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,8 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service(value = "authService")
-public class AuthServiceImpl implements AuthService {
+@Service(value = "authServiceOsbb")
+public class AuthServiceOsbbImpl implements AuthService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -26,10 +25,7 @@ public class AuthServiceImpl implements AuthService {
     private TokenService tokenService;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
+    private OsbbRepository osbbRepository;
 
     @Override
     public String auth(String login, String pass) {
@@ -40,19 +36,15 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
 
-        log.info("Attempting create token for user " + login);
+        log.info("Attempting create token for osbb " + login);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        User user = userRepository.findByEmail(login)
-                .map(e -> modelMapper.map(e, User.class ))
-                .orElseThrow(() -> new UserNotFoundException("User not found with login: " + login));
+        Osbb osbb = osbbRepository.findByEmail(login);
 
-         return tokenService.createToken(user.getId());
+        if (osbb == null || osbb.equals(new Osbb())){
+            log.warn("Got null or empty Osbb Object from repository after saving it");
+        }
+
+        return tokenService.createToken(osbb.getId());
     }
-
-    public String registration(UserDto userDto) {
-        return null;
-        //todo complete method
-    }
-
 }

@@ -1,9 +1,17 @@
 package com.lits.osbb.repository;
 
 import com.lits.osbb.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.List;
+import java.util.Optional;
 
-    User findByEmail(String email);
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    Optional<User> findByEmail(String email);
+
+    Optional<User> findById(Long id);
+
+    List<User> findAll();
+
 }
