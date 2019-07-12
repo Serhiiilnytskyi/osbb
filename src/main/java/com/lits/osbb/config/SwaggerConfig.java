@@ -26,7 +26,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Slf4j
 public class SwaggerConfig {
     public static final String AUTHORIZATION_HEADER = "Authorization";
-    public static final String DEFAULT_INCLUDE_PATTERN = "/api/.*";
+    public static final String DEFAULT_INCLUDE_PATTERN = "/.*";
 
     @Bean
     public Docket api() {
