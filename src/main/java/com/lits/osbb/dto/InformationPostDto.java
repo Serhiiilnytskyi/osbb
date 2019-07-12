@@ -11,9 +11,14 @@ import java.util.Date;
 public class InformationPostDto {
 
     private Long id;
+
     private String title;
+
     private String body;
+
     private Date beginDate;
+
     private Date endDate;
+
     private User author;
 }
