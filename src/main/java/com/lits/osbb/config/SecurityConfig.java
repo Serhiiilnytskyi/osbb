@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui.html",
             "/v2/api-docs",
             "/webjars/**",
+            "favicon.ico",
+            "/auth/**",
             "/"
     };
 
@@ -81,18 +83,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .authorizeRequests()
                     .antMatchers("/api/login")
-                        .permitAll()
+                    .permitAll()
                 //.antMatchers("/actuator/**").permitAll()
-                .antMatchers("/actuator/**").hasAuthority("ADMIN")
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/v2/api-docs",
-                        "/swagger-resources/**",
-                        "/swagger-ui.html**",
-                        "/webjars/**",
-                        "favicon.ico"
-                ).permitAll()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/actuator/**")
+                    .hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET,AUTH_WHITELIST)
+                    .permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity

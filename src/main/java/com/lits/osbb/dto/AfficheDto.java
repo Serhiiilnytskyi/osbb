@@ -1,11 +1,13 @@
 package com.lits.osbb.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.tomcat.jni.User;
 
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 public class AfficheDto {
 
     private Long id;

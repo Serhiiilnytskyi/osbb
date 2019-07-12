@@ -1,12 +1,13 @@
 package com.lits.osbb.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "addresses")
 public class Address {
 
     @Id

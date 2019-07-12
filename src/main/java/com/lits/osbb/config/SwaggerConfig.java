@@ -36,9 +36,9 @@ public class SwaggerConfig {
         log.debug("Starting Swagger");
 
         Contact contact = new Contact(
-                "Serhii Ilnytskyi",
+                "OSBB team",
                 "http://mysite.com",
-                "serhiiilnytskyi@gmail.com");
+                "osbb@osbb.com");
 
         List<VendorExtension> vext = new ArrayList<>();
         ApiInfo apiInfo = new ApiInfo(
