@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class Affiche implements Post {
+public class InformationPost implements Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

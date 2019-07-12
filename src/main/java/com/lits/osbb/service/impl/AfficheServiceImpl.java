@@ -1,57 +1,59 @@
 package com.lits.osbb.service.impl;
 
-import com.lits.osbb.dto.AfficheDto;
-import com.lits.osbb.model.Affiche;
-import com.lits.osbb.repository.AfficheRepository;
+import com.lits.osbb.dto.InformationPostDto;
+import com.lits.osbb.model.InformationPost;
+import com.lits.osbb.repository.InformationPostRepository;
 import com.lits.osbb.service.AfficheService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service
 public class AfficheServiceImpl implements AfficheService {
 
     @Autowired
-    private AfficheRepository afficheRepository;
+    private InformationPostRepository informationPostRepository;
     @Autowired
     private ModelMapper modelMapper;
 
 
 
-    public AfficheDto findOne(Long id){
-        return Optional.ofNullable(afficheRepository.findOneById(id))
-                .map(e -> modelMapper.map(e, AfficheDto.class))
-                .orElse(new AfficheDto());
+    public InformationPostDto findOne(Long id){
+        return Optional.ofNullable(informationPostRepository.findOneById(id))
+                .map(e -> modelMapper.map(e, InformationPostDto.class))
+                .orElse(new InformationPostDto());
     }
 
-    public List<AfficheDto> findAll(){
-        return StreamSupport.stream(afficheRepository.findAll().spliterator(), false)
-                .map(e -> modelMapper.map(e, AfficheDto.class))
+    public List<InformationPostDto> findAll(){
+        return StreamSupport.stream(informationPostRepository.findAll().spliterator(), false)
+                .map(e -> modelMapper.map(e, InformationPostDto.class))
                 .collect(Collectors.toList());
     }
 
-    public AfficheDto save(AfficheDto afficheDto){
-        return Optional.ofNullable(afficheDto)
-                .map(e -> modelMapper.map(e, Affiche.class))
-                .map(e -> afficheRepository.save(e))
-                .map(e -> modelMapper.map(e, AfficheDto.class))
-                .orElse(new AfficheDto());
+    public InformationPostDto save(InformationPostDto informationPostDto){
+        return Optional.ofNullable(informationPostDto)
+                .map(e -> modelMapper.map(e, InformationPost.class))
+                .map(e -> informationPostRepository.save(e))
+                .map(e -> modelMapper.map(e, InformationPostDto.class))
+                .orElse(new InformationPostDto());
     }
 
-    public AfficheDto update(AfficheDto afficheDto){return Optional.ofNullable(afficheDto)
-            .map(e -> modelMapper.map(e, Affiche.class))
-            .map(e -> afficheRepository.save(e))
-            .map(e -> modelMapper.map(e, AfficheDto.class))
-            .orElse(new AfficheDto());};
+    public InformationPostDto update(InformationPostDto informationPostDto){return Optional.ofNullable(informationPostDto)
+            .map(e -> modelMapper.map(e, InformationPost.class))
+            .map(e -> informationPostRepository.save(e))
+            .map(e -> modelMapper.map(e, InformationPostDto.class))
+            .orElse(new InformationPostDto());};
 
-    public void delete(AfficheDto afficheDto){
-        afficheRepository.delete(modelMapper.map(afficheDto, Affiche.class));
+    public void delete(InformationPostDto informationPostDto){
+        informationPostRepository.delete(modelMapper.map(informationPostDto, InformationPost.class));
     }
 
     public void delete(Long id){
-        afficheRepository.delete(id);
+        informationPostRepository.delete(id);
     }
 }

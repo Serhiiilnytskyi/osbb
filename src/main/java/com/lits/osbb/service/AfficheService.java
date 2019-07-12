@@ -1,20 +1,19 @@
 package com.lits.osbb.service;
 
-import com.lits.osbb.dto.AfficheDto;
-import com.lits.osbb.dto.PropositionDto;
+import com.lits.osbb.dto.InformationPostDto;
 
 import java.util.List;
 
 public interface AfficheService {
-    AfficheDto findOne(Long id);
+    InformationPostDto findOne(Long id);
 
-    List<AfficheDto> findAll();
+    List<InformationPostDto> findAll();
 
-    AfficheDto save(AfficheDto afficheDto);
+    InformationPostDto save(InformationPostDto informationPostDto);
 
-    AfficheDto update(AfficheDto afficheDto);
+    InformationPostDto update(InformationPostDto informationPostDto);
 
-    void delete(AfficheDto afficheDto);
+    void delete(InformationPostDto informationPostDto);
 
     void delete(Long id);
 }

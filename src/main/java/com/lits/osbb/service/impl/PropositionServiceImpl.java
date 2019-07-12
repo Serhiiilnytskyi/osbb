@@ -7,11 +7,13 @@ import com.lits.osbb.repository.PropositionRepository;
 import com.lits.osbb.service.PropositionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class PropositionServiceImpl implements PropositionService {
 
     @Autowired

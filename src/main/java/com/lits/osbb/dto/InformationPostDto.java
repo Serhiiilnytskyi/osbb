@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class AfficheDto {
+public class InformationPostDto {
 
     private Long id;
     private String title;

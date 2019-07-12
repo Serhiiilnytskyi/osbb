@@ -7,7 +7,9 @@ import com.lits.osbb.repository.VotingPostRepository;
 import com.lits.osbb.service.VotingPostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VotingPostServiceImpl implements VotingPostService {
 
     @Autowired
