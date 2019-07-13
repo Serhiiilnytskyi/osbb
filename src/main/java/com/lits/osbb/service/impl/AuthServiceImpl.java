@@ -47,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
                 .map(e -> modelMapper.map(e, User.class ))
                 .orElseThrow(() -> new UserNotFoundException("User not found with login: " + login));
 
-         return tokenService.createToken(user.getId());
+          return tokenService.createToken(user.getId());
     }
 
     public String registration(UserDto userDto) {
