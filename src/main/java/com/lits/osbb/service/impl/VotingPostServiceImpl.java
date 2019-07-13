@@ -1,15 +1,15 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.VotingPostDto;
-import com.lits.osbb.exceptions.IdNotFoundException;
+import com.lits.osbb.exception.IdNotFoundException;
 import com.lits.osbb.model.VotingPost;
 import com.lits.osbb.repository.VotingPostRepository;
 import com.lits.osbb.service.VotingPostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
+@Service
 public class VotingPostServiceImpl implements VotingPostService {
 
     @Autowired

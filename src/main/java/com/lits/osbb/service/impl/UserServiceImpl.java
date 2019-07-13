@@ -5,7 +5,6 @@ import com.lits.osbb.exception.UserNotFoundException;
 import com.lits.osbb.model.User;
 import com.lits.osbb.repository.UserRepository;
 import com.lits.osbb.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service(value = "userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 

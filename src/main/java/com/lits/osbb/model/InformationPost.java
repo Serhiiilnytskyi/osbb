@@ -1,20 +1,31 @@
 package com.lits.osbb.model;
-import lombok.Data;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table
-public class Affiche implements Post {
+public class InformationPost implements Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     private String body;
+
     private Date beginDate;
+
     private Date endDate;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author")
     private User author;
 }

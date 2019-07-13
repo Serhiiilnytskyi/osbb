@@ -1,4 +1,4 @@
-package com.lits.osbb.exceptions;
+package com.lits.osbb.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

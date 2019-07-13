@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service(value = "authService")
+@Service
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
@@ -52,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
 
     public String registration(UserDto userDto) {
         return null;
-        //todo complete method
+        //todo finish method
     }
 
 }

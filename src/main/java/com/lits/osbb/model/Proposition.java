@@ -1,14 +1,15 @@
 package com.lits.osbb.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table
 public class Proposition implements Serializable {
 
     @Id
@@ -19,7 +20,10 @@ public class Proposition implements Serializable {
 
     private String body;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "proposition", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposition", cascade = CascadeType.ALL)
     private Set<Vote> votes;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author")
+    private User author;
 }

@@ -1,22 +1,25 @@
 package com.lits.osbb.dto;
 
 
-import com.lits.osbb.model.Address;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 public class OsbbDto {
 
     private Long id;
 
-    private String name;
+    private String firstName;
+
+    private String secondName;
 
     private String email;
 
     private String password;
 
-    private Set<Address> address;
+    private Set<RoleDto> roles;
 }
