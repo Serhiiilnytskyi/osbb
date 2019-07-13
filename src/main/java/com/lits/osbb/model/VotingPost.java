@@ -28,7 +28,7 @@ public class VotingPost {
     private List<Vote> votes;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "author")
     private User author;
 
 }

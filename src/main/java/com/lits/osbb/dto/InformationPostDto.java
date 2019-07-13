@@ -1,14 +1,15 @@
 package com.lits.osbb.dto;
 
+import com.lits.osbb.model.Post;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.tomcat.jni.User;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
 @Setter
-public class InformationPostDto {
+public class InformationPostDto implements Post {
 
     private Long id;
 
@@ -20,5 +21,5 @@ public class InformationPostDto {
 
     private Date endDate;
 
-    private User author;
+    private UserDto author;
 }

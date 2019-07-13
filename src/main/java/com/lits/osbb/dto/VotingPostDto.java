@@ -1,11 +1,9 @@
 package com.lits.osbb.dto;
 
-import com.lits.osbb.model.Vote;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.tomcat.jni.User;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +21,8 @@ public class VotingPostDto {
 
     private Date endDate;
 
-    private User author;
+    private List<VoteDto> votes;
 
-    private List<Vote> voteList;
+    private UserDto author;
 
 }

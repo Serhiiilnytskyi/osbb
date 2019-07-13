@@ -26,6 +26,6 @@ public class InformationPost implements Post {
     private Date endDate;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "author")
     private User author;
 }

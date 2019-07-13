@@ -3,7 +3,7 @@ package com.lits.osbb.service.impl;
 import com.lits.osbb.dto.InformationPostDto;
 import com.lits.osbb.model.InformationPost;
 import com.lits.osbb.repository.InformationPostRepository;
-import com.lits.osbb.service.AfficheService;
+import com.lits.osbb.service.InformationPostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class AfficheServiceImpl implements AfficheService {
+public class InformationPostServiceImpl implements InformationPostService {
 
     @Autowired
     private InformationPostRepository informationPostRepository;
