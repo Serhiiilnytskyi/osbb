@@ -23,4 +23,7 @@ public class Proposition implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposition", cascade = CascadeType.ALL)
     private Set<Vote> votes;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author")
+    private User author;
 }

@@ -4,7 +4,7 @@ import com.lits.osbb.dto.InformationPostDto;
 
 import java.util.List;
 
-public interface AfficheService {
+public interface InformationPostService {
 
     InformationPostDto findOne(Long id);
 

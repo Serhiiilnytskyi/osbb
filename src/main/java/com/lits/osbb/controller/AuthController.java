@@ -2,7 +2,6 @@ package com.lits.osbb.controller;
 
 import com.lits.osbb.dto.AuthRequest;
 import com.lits.osbb.dto.UserDto;
-import com.lits.osbb.service.AuthService;
 import com.lits.osbb.service.impl.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

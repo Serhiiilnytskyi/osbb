@@ -1,15 +1,15 @@
 package com.lits.osbb.dto;
 
-import com.lits.osbb.model.Vote;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Getter
 @Setter
-public class PropositionDto {
+public class PropositionDto implements Serializable {
 
     private Long id;
 
@@ -17,6 +17,7 @@ public class PropositionDto {
 
     private String body;
 
-    private Set<Vote> votes;
+    private Set<VoteDto> votes;
 
+    private UserDto author;
 }

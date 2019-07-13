@@ -26,14 +26,14 @@ public class PropositionServiceImpl implements PropositionService {
     public PropositionDto findOne(Long id) {
         return Optional.ofNullable(propositionRepository.findOneById(id))
                 .map(e -> modelMapper.map(e, PropositionDto.class))
-                .orElseThrow(()-> new PropositionNotFoundException("Proposition with id "+id+" not found"));
+                .orElseThrow(()-> new PropositionNotFoundException("PropositionDto with id "+id+" not found"));
     }
 
     @Override
     public PropositionDto findOneByTitle(String title) {
         return Optional.ofNullable(propositionRepository.findOneByTitle(title))
                 .map(e->modelMapper.map(e,PropositionDto.class))
-                .orElseThrow(()->new PropositionNotFoundException("Proposition with title "+title+" not found"));
+                .orElseThrow(()->new PropositionNotFoundException("PropositionDto with title "+title+" not found"));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PropositionServiceImpl implements PropositionService {
                 .map(e -> modelMapper.map(e, Proposition.class))
                 .map(e -> propositionRepository.save(e))
                 .map(e -> modelMapper.map(e, PropositionDto.class))
-                .orElseThrow(()->new PropositionNotFoundException("Proposition could not be saved"));
+                .orElseThrow(()->new PropositionNotFoundException("PropositionDto could not be saved"));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class PropositionServiceImpl implements PropositionService {
                 .map(e -> modelMapper.map(e, Proposition.class))
                 .map(e -> propositionRepository.save(e))
                 .map(e -> modelMapper.map(e, PropositionDto.class))
-                .orElseThrow(()->new PropositionNotFoundException("Proposition could not be update"));
+                .orElseThrow(()->new PropositionNotFoundException("PropositionDto could not be update"));
     }
 
     @Override
