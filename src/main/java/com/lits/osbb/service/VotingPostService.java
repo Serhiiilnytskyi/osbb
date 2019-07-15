@@ -8,7 +8,7 @@ public interface VotingPostService {
 
     VotingPostDto update(VotingPostDto votingPostDto);
 
-    VotingPostDto delete(VotingPostDto votingPostDto);
+    void delete(VotingPostDto votingPostDto);
 
     VotingPostDto getById(Long id);
 

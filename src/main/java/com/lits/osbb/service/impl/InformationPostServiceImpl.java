@@ -22,19 +22,19 @@ public class InformationPostServiceImpl implements InformationPostService {
     private ModelMapper modelMapper;
 
 
-
+    @Override
     public InformationPostDto findOne(Long id){
         return Optional.ofNullable(informationPostRepository.findOneById(id))
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
                 .orElse(new InformationPostDto());
     }
-
+    @Override
     public List<InformationPostDto> findAll(){
         return StreamSupport.stream(informationPostRepository.findAll().spliterator(), false)
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
                 .collect(Collectors.toList());
     }
-
+    @Override
     public InformationPostDto save(InformationPostDto informationPostDto){
         return Optional.ofNullable(informationPostDto)
                 .map(e -> modelMapper.map(e, InformationPost.class))
@@ -42,17 +42,18 @@ public class InformationPostServiceImpl implements InformationPostService {
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
                 .orElse(new InformationPostDto());
     }
-
-    public InformationPostDto update(InformationPostDto informationPostDto){return Optional.ofNullable(informationPostDto)
+    @Override
+    public InformationPostDto update(InformationPostDto informationPostDto){
+        return Optional.ofNullable(informationPostDto)
             .map(e -> modelMapper.map(e, InformationPost.class))
             .map(e -> informationPostRepository.save(e))
             .map(e -> modelMapper.map(e, InformationPostDto.class))
             .orElse(new InformationPostDto());};
-
+    @Override
     public void delete(InformationPostDto informationPostDto){
         informationPostRepository.delete(modelMapper.map(informationPostDto, InformationPost.class));
     }
-
+    @Override
     public void delete(Long id){
         informationPostRepository.delete(id);
     }
