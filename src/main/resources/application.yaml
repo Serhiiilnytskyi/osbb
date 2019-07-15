@@ -4,12 +4,12 @@ spring:
     database: mysql
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
 
   datasource:
     url: jdbc:mysql://localhost:3306/osbb?serverTimezone=UTC
-    username: serhii
-    password: F,hfrflf,hf314
+    username: u5
+    password:
 
 security:
   token:

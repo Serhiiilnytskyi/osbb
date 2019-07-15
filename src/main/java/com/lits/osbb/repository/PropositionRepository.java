@@ -1,9 +1,13 @@
 package com.lits.osbb.repository;
 
 import com.lits.osbb.model.Proposition;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface PropositionRepository extends JpaRepository<Proposition, Long> {
+import java.util.List;
+
+public interface PropositionRepository extends CrudRepository<Proposition, Long> {
+
+    List<Proposition> findAll();
 
     Proposition findOneById(Long id);
 
