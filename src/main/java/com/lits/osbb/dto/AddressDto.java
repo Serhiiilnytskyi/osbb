@@ -18,8 +18,8 @@ public class AddressDto {
 
     private String street;
 
-    private String buildingNubmer;
+    private Integer buildingNumber;
 
-    private Integer appartmentNumber;
+    private Integer apartmentNumber;
 
 }

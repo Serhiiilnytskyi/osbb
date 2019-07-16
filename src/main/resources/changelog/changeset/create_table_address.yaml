@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 9
+      author: Team1
+      changes:
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: apartment_number
+                  type: int(11)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: building_number
+                  type: int(11)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: street
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

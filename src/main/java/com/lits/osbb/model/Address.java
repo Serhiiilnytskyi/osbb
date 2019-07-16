@@ -18,8 +18,8 @@ public class Address {
 
     private String street;
 
-    private String buildingNubmer;
+    private Integer buildingNumber;
 
-    private Integer appartmentNumber;
+    private Integer apartmentNumber;
 
 }

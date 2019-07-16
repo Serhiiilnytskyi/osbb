@@ -36,12 +36,12 @@ public class PropositionServiceImpl implements PropositionService {
                 .orElseThrow(()->new PropositionNotFoundException("PropositionDto with title "+title+" not found"));
     }
 
-    @Override
-    public List<PropositionDto> findAll() {
-        return propositionRepository.findAll().stream()
-                .map(e -> modelMapper.map(e, PropositionDto.class))
-                .collect(Collectors.toList());
-    }
+//    @Override
+//    public List<PropositionDto> findAll() {
+//        return propositionRepository.findAll().stream()
+//                .map(e -> modelMapper.map(e, PropositionDto.class))
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public PropositionDto save(PropositionDto propositionDto) {

@@ -2,12 +2,15 @@ package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.VotingPostDto;
 import com.lits.osbb.exception.IdNotFoundException;
+import com.lits.osbb.exception.TopicNotFoundException;
 import com.lits.osbb.model.VotingPost;
 import com.lits.osbb.repository.VotingPostRepository;
 import com.lits.osbb.service.VotingPostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class VotingPostServiceImpl implements VotingPostService {
@@ -20,7 +23,11 @@ public class VotingPostServiceImpl implements VotingPostService {
 
     @Override
     public VotingPostDto save(VotingPostDto votingPostDto) {
-        return null;
+       return Optional.of(votingPostDto)
+                .map(e -> modelMapper.map(e, VotingPost.class))
+                .map(e -> votingPostRepository.save(e))
+                .map(e -> modelMapper.map(e, VotingPostDto.class))
+                .orElseThrow(() -> new TopicNotFoundException("????????????????? Nothing to save"));
     }
 
     @Override

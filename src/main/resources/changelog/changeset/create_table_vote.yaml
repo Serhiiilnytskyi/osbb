@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: Team1
+      changes:
+      - createTable:
+          tableName: vote
+          columns:
+            - column:
+                name: id
+                type: bigint
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: is_vote
+                type: bit(1)
+                constraints:
+                  nullable: false
+            - column:
+                name: proposition_id
+                type: bigint
+                constraints:
+                  foreignKeyName: fk_proposition_id
+                  references: proposition(id)
+            - column:
+                name: user_id
+                type: bigint
+                constraints:
+                  foreignKeyName: fk_user_id
+                  references: user(id)
+            - column:
+                name: voting_post_id
+                type: bigint
+                constraints:
+                  foreignKeyName: fk_voting_post_id
+                  references: voting_post(id)

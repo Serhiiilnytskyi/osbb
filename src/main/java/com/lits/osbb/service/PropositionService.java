@@ -10,7 +10,7 @@ public interface PropositionService {
 
     PropositionDto findOneByTitle(String title);
 
-    List<PropositionDto> findAll();
+    //List<PropositionDto> findAll();
 
     PropositionDto save(PropositionDto propositionDto);
 
