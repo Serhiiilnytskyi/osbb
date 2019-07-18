@@ -17,8 +17,12 @@ import java.util.List;
 @RequestMapping(value = "/api/propositions")
 public class PropositionController {
 
-    @Autowired
     private PropositionService propositionService;
+
+    @Autowired
+    public PropositionController(PropositionService propositionService) {
+        this.propositionService = propositionService;
+    }
 
     @ApiOperation(value = "save")
     @PostMapping(value = "/")

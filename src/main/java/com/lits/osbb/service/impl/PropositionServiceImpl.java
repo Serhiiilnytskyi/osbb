@@ -16,11 +16,15 @@ import java.util.stream.Collectors;
 @Service
 public class PropositionServiceImpl implements PropositionService {
 
-    @Autowired
     private PropositionRepository propositionRepository;
 
-    @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    public PropositionServiceImpl(PropositionRepository propositionRepository, ModelMapper modelMapper) {
+        this.propositionRepository = propositionRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public PropositionDto findOne(Long id) {
@@ -69,5 +73,10 @@ public class PropositionServiceImpl implements PropositionService {
     @Override
     public void delete(Long id) {
         propositionRepository.delete(id);
+    }
+
+    @Override
+    public List<PropositionDto> findAll() {
+        return null;
     }
 }
