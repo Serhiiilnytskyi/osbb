@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,10 +25,10 @@ public class VotingPost {
 
     private Date endDate;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "votingPost", cascade = CascadeType.ALL)
-    private List<Vote> votes;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "votingPost")
+    private List<Vote> votes = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author")
     private User author;
 

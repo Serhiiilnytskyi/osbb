@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -26,35 +28,35 @@ public class User {
 
     private Boolean isOsbb;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "osbb_id")
     private User osbbId;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "osbbId", cascade = CascadeType.ALL)
-    private List<User> osbbUsers;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "osbbId")
+    private List<User> osbbUsers = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    List<Vote> votes;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    List<Vote> votes = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_address",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "address_id", referencedColumnName = "id")})
-    private Set<Address> address;
+    private Set<Address> address = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
-    private List<InformationPost> informationPosts;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+    private List<InformationPost> informationPosts = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
-    private List<Proposition> propositions;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+    private List<Proposition> propositions = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
-    private List<VotingPost> votingPosts;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+    private List<VotingPost> votingPosts = new ArrayList<>();
 
 }
