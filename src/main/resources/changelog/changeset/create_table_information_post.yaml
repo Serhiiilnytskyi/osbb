@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 6
-      author: Team1
+      id: 8
+      author: OsbbTeam
       changes:
       - createTable:
           tableName: information_post
@@ -17,12 +17,6 @@ databaseChangeLog:
                 name: begin_date
                 type: DateTime
             - column:
-                name: body
-                type: varchar(255)
-                constraints:
-                  nullable: false
-                  unique: true
-            - column:
                 name: end_date
                 type: DateTime
             - column:
@@ -31,8 +25,14 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
+                name: body
+                type: varchar(255)
+                constraints:
+                  nullable: false
+                  unique: true
+            - column:
                 name: author
                 type: bigint
                 constraints:
-                  foreignKeyName: fk_author
+                  foreignKeyName: fk_user_information_post
                   references: user(id)

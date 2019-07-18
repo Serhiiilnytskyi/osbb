@@ -32,9 +32,6 @@ public class User {
     @JoinColumn(name = "osbb_id")
     private User osbbId;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "osbbId")
-    private List<User> osbbUsers = new ArrayList<>();
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Vote> votes = new ArrayList<>();
 

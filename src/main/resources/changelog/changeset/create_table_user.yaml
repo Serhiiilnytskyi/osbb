@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 5
-      author: Team1
+      id: 1
+      author: OsbbTeam
       changes:
       - createTable:
           tableName: user
@@ -15,6 +15,11 @@ databaseChangeLog:
                   nullable: false
             - column:
                 name: first_name
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: second_name
                 type: varchar(255)
                 constraints:
                   nullable: false
