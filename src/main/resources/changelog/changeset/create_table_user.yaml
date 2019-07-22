@@ -34,3 +34,13 @@ databaseChangeLog:
                 type: varchar(255)
                 constraints:
                   nullable: false
+            - column:
+                name: osbb_id
+                type: bigint
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_osbb_user
+                  references: osbb(id)
+            - column:
+                name: is_osbb_manager
+                type: bit(1)

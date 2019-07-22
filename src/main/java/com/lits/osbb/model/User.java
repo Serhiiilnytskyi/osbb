@@ -29,6 +29,12 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Vote> votes = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "osbb_id")
+    private Osbb osbb;
+
+    private Boolean isOsbbManager;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_address",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

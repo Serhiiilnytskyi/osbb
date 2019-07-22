@@ -21,11 +21,7 @@ public class Osbb {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User director;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "osbb_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "osbb")
     private List<User> members = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -33,5 +29,4 @@ public class Osbb {
             joinColumns = {@JoinColumn(name = "osbb_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "address_id", referencedColumnName = "id")})
     private Set<Address> address = new HashSet<>();
-
 }

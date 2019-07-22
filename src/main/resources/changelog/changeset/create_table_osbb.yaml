@@ -18,9 +18,3 @@ databaseChangeLog:
                 type: varchar(255)
                 constraints:
                   nullable: false
-            - column:
-                name: director
-                type: bigint
-                constraints:
-                  foreignKeyName: fk_user_osbb
-                  references: user(id)

@@ -1,8 +1,8 @@
 databaseChangeLog:
   - include:
-      file: changelog/changeset/create_table_user.yaml
-  - include:
       file: changelog/changeset/create_table_osbb.yaml
+  - include:
+      file: changelog/changeset/create_table_user.yaml
   - include:
       file: changelog/changeset/create_table_role.yaml
   - include:
