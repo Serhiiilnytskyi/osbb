@@ -26,12 +26,6 @@ public class User {
 
     private String password;
 
-    private Boolean isOsbb;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "osbb_id")
-    private User osbbId;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Vote> votes = new ArrayList<>();
 

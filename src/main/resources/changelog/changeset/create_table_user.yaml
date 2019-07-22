@@ -24,11 +24,6 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
-                name: is_osbb
-                type: bit(1)
-                constraints:
-                  nullable: false
-            - column:
                 name: email
                 type: varchar(255)
                 constraints:
@@ -39,9 +34,3 @@ databaseChangeLog:
                 type: varchar(255)
                 constraints:
                   nullable: false
-            - column:
-                name: osbb_id
-                type: bigint
-                constraints:
-                  foreignKeyName: fk_osbb_id
-                  references: user(id)
