@@ -71,7 +71,7 @@ public class PropositionServiceImpl implements PropositionService {
     
     @Override
     public void delete(Long id) {
-        propositionRepository.deleteById(id);
+        propositionRepository.delete(id);
     }
 
     @Override

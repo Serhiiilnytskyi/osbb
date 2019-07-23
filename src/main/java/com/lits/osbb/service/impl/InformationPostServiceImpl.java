@@ -61,6 +61,6 @@ public class InformationPostServiceImpl implements InformationPostService {
     }
 
     public void delete(Long id) {
-        informationPostRepository.deleteById(id);
+        informationPostRepository.delete(id);
     }
 }
