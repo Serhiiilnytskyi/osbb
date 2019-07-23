@@ -8,14 +8,16 @@ spring:
 
   datasource:
     url: jdbc:mysql://localhost:3306/osbb?serverTimezone=UTC
-    username: root
-    password: root
+    username: serhii
+    password: F,hfrflf,hf314
+
+  liquibase:
+    change-log: classpath:/changelog/db.changelog-master.yaml
 
 security:
   token:
     secret: 9DKxk4ZuopLtywwSoyIR45mdLOiPa1zw
     expire: 24
 
-liquibase:
-  change-log: classpath:/changelog/db.changelog-master.yaml
+
 
