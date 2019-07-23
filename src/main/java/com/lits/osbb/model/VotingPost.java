@@ -4,7 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -20,14 +21,14 @@ public class VotingPost {
 
     private String body;
 
-    private Date beginDate;
+    private LocalDateTime beginDate;
 
-    private Date endDate;
+    private LocalDateTime endDate;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "votingPost", cascade = CascadeType.ALL)
-    private List<Vote> votes;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "votingPost")
+    private List<Vote> votes = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author")
     private User author;
 

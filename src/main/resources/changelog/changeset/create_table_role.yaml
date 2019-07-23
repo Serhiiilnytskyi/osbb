@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 8
-      author: Team1
+      id: 2
+      author: OsbbTeam
       changes:
         - createTable:
             tableName: role
@@ -21,5 +21,3 @@ databaseChangeLog:
               - column:
                   name: description
                   type: varchar(255)
-                  constraints:
-                    nullable: false

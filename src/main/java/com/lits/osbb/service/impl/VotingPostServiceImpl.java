@@ -15,11 +15,15 @@ import java.util.Optional;
 @Service
 public class VotingPostServiceImpl implements VotingPostService {
 
-    @Autowired
     private VotingPostRepository votingPostRepository;
 
-    @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    public VotingPostServiceImpl(VotingPostRepository votingPostRepository, ModelMapper modelMapper) {
+        this.votingPostRepository = votingPostRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public VotingPostDto save(VotingPostDto votingPostDto) {

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -20,10 +21,10 @@ public class Proposition implements Serializable {
 
     private String body;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposition", cascade = CascadeType.ALL)
-    private Set<Vote> votes;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposition")
+    private Set<Vote> votes = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author")
     private User author;
 }

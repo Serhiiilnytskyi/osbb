@@ -1,19 +1,23 @@
 databaseChangeLog:
   - include:
-      file: changelog/changeset/create_table_proposition.yaml
+      file: changelog/changeset/create_table_osbb.yaml
   - include:
-      file: changelog/changeset/create_table_address.yaml
+      file: changelog/changeset/create_table_user.yaml
   - include:
       file: changelog/changeset/create_table_role.yaml
   - include:
-      file: changelog/changeset/create_table_user.yaml
+      file: changelog/changeset/create_table_address.yaml
   - include:
       file: changelog/changeset/create_table_user_role.yaml
   - include:
       file: changelog/changeset/create_table_user_address.yaml
   - include:
-      file: changelog/changeset/create_table_vote.yaml
+      file: changelog/changeset/create_table_osbb_address.yaml
+  - include:
+      file: changelog/changeset/create_table_proposition.yaml
   - include:
       file: changelog/changeset/create_table_voting_post.yaml
   - include:
       file: changelog/changeset/create_table_information_post.yaml
+  - include:
+      file: changelog/changeset/create_table_vote.yaml

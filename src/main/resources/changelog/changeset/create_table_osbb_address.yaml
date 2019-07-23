@@ -1,19 +1,19 @@
 databaseChangeLog:
   - changeSet:
-      id: 4
+      id: 11
       author: OsbbTeam
       changes:
         - createTable:
-            tableName: user_role
+            tableName: osbb_address
             columns:
               - column:
-                  name: user_id
+                  name: osbb_id
                   type: bigint
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: role_id
+                  name: address_id
                   type: bigint
                   constraints:
                     primaryKey: true

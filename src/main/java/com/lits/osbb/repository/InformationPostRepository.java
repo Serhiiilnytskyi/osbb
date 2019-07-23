@@ -2,9 +2,9 @@ package com.lits.osbb.repository;
 
 import com.lits.osbb.model.InformationPost;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-
+@Repository
 public interface InformationPostRepository extends CrudRepository<InformationPost, Long> {
 
     InformationPost findOneById (Long Id);

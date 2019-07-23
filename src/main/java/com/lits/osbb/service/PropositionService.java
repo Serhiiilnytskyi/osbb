@@ -19,4 +19,6 @@ public interface PropositionService {
     void delete(PropositionDto propositionDto);
 
     void delete(Long id);
+
+    List<PropositionDto> findAll();
 }
