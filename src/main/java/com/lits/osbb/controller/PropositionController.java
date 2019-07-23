@@ -49,8 +49,8 @@ public class PropositionController {
     }
 
     @ApiOperation(value = "update")
-    @PutMapping(value = "/update/{propositionDto}")
-    public PropositionDto update(@RequestParam(value = "propositionDto", defaultValue = "") PropositionDto propositionDto){
+    @PutMapping(value = "/update")
+    public PropositionDto update(@RequestBody PropositionDto propositionDto){
         return propositionService.update(propositionDto);
     }
 
