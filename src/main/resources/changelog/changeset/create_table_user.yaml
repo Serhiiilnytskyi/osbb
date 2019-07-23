@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 5
-      author: Team1
+      id: 1
+      author: OsbbTeam
       changes:
       - createTable:
           tableName: user
@@ -19,8 +19,8 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
-                name: is_osbb
-                type: bit(1)
+                name: second_name
+                type: varchar(255)
                 constraints:
                   nullable: false
             - column:
@@ -38,5 +38,9 @@ databaseChangeLog:
                 name: osbb_id
                 type: bigint
                 constraints:
-                  foreignKeyName: fk_osbb_id
-                  references: user(id)
+                  nullable: false
+                  foreignKeyName: fk_osbb_user
+                  references: osbb(id)
+            - column:
+                name: is_osbb_manager
+                type: bit(1)

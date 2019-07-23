@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 7
-      author: Team1
+      author: OsbbTeam
       changes:
       - createTable:
           tableName: voting_post
@@ -34,5 +34,5 @@ databaseChangeLog:
                 name: author
                 type: bigint
                 constraints:
-                  foreignKeyName: fk_author
+                  foreignKeyName: fk_user_voting_post
                   references: user(id)

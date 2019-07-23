@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
-      author: Team1
+      id: 6
+      author: OsbbTeam
       changes:
         - createTable:
             tableName: proposition
@@ -27,5 +27,5 @@ databaseChangeLog:
                   name: author
                   type: bigint
                   constraints:
-                    foreignKeyName: fk_author
+                    foreignKeyName: fk_user_proposition
                     references: user(id)
