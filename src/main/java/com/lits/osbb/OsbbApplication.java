@@ -1,7 +1,10 @@
 package com.lits.osbb;
 
+import com.lits.osbb.model.Osbb;
 import com.lits.osbb.model.Role;
 import com.lits.osbb.model.User;
+import com.lits.osbb.repository.OsbbRepository;
+import com.lits.osbb.repository.RoleRepository;
 import com.lits.osbb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -17,6 +20,12 @@ public class OsbbApplication implements ApplicationRunner {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    OsbbRepository osbbRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -41,7 +50,14 @@ public class OsbbApplication implements ApplicationRunner {
                     add(role);
                 }});
                 user.setPassword(passwordEncoder.encode("admin"));
-                user.setIsOsbb(true);
+                Osbb osbb = new Osbb();
+                osbb.setName("SomeOsbb");
+        osbbRepository.save(osbb);
+                user.setOsbb(osbb);
+
+
+
+        roleRepository.save(role);
         userRepository.save(user);
 
     }

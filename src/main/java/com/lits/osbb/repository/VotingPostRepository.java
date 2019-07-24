@@ -1,22 +1,26 @@
 package com.lits.osbb.repository;
 
-import com.lits.osbb.dto.VotingPostDto;
 import com.lits.osbb.model.VotingPost;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
+@Repository
 public interface VotingPostRepository extends CrudRepository<VotingPost, Long> {
 
-    Optional<VotingPost> findById(Long id);
+    VotingPost findOne(Long id);
 
-    VotingPost findByTitleContains(String title);
+    VotingPost findOneByTitle(String title);
 
-    VotingPost findByAuthor(String title);
+    VotingPost findOneByAuthor(String author);
 
-    ResponseEntity<?> save(VotingPostDto votingPostDto);
+    List<VotingPost> findAll ();
 
-    void delete(VotingPost e);
+    VotingPost update(VotingPost votingPost);
+
+    VotingPost save(VotingPost votingPost);
+
+    void delete(VotingPost votingPost);
 
 }

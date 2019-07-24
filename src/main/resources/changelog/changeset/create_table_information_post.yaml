@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8
+      author: OsbbTeam
+      changes:
+      - createTable:
+          tableName: information_post
+          columns:
+            - column:
+                name: id
+                type: bigint
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: begin_date
+                type: DateTime
+            - column:
+                name: end_date
+                type: DateTime
+            - column:
+                name: title
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: body
+                type: varchar(255)
+                constraints:
+                  nullable: false
+                  unique: true
+            - column:
+                name: author
+                type: bigint
+                constraints:
+                  foreignKeyName: fk_user_information_post
+                  references: user(id)

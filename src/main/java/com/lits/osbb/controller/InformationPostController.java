@@ -1,13 +1,10 @@
 package com.lits.osbb.controller;
 import com.lits.osbb.dto.InformationPostDto;
-import com.lits.osbb.model.InformationPost;
-import com.lits.osbb.model.Post;
-import com.lits.osbb.repository.InformationPostService;
+import com.lits.osbb.repository.InformationPostRepository;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +14,10 @@ import java.util.List;
 public class InformationPostController {
 
 
-    private InformationPostService informationPostService;
+    private InformationPostRepository informationPostService;
 
     @Autowired
-    public InformationPostController(InformationPostService informationPostRepository) {
+    public InformationPostController(InformationPostRepository informationPostRepository) {
         this.informationPostService = informationPostRepository;
     }
 
@@ -36,8 +33,8 @@ public class InformationPostController {
     }
     @ApiOperation(value = "delete")
     @PostMapping(value = "/delete/{id}")
-    void deleteOneById(@PathVariable("id")Long id){
-        informationPostService.delete(id);
+    ResponseEntity deleteOneById(@PathVariable("id")Long id){
+        return new ResponseEntity(informationPostService,HttpStatus.OK);
     }
 
     @ApiOperation(value = "save")

@@ -5,7 +5,7 @@ import com.lits.osbb.model.InformationPost;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.ResponseEntity;
 
-public interface InformationPostService extends CrudRepository<InformationPost, Long> {
+public interface InformationPostRepository extends CrudRepository<InformationPost, Long> {
 
     InformationPost findOneById (Long Id);
 
@@ -16,4 +16,7 @@ public interface InformationPostService extends CrudRepository<InformationPost, 
     InformationPost findOneByTitle(String title);
 
     InformationPost findOneByAuthor(String author);
+
+    InformationPost findOne(Long id);
+
 }

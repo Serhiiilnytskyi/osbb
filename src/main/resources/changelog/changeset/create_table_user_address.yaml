@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: OsbbTeam
+      changes:
+        - createTable:
+            tableName: user_address
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: address_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false

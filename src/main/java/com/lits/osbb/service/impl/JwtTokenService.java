@@ -3,7 +3,6 @@ package com.lits.osbb.service.impl;
 import com.lits.osbb.service.TokenService;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
@@ -40,7 +39,6 @@ public class JwtTokenService implements TokenService {
             log.debug("JWT is not valid: {}", e.getMessage());
             throw new BadCredentialsException("JWT is not valid", e);
         }
-
     }
 
     @Override

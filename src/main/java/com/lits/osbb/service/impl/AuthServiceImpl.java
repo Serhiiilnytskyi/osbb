@@ -1,7 +1,7 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.UserDto;
-import com.lits.osbb.exception.UserNotFoundException;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.User;
 import com.lits.osbb.repository.UserRepository;
 import com.lits.osbb.service.AuthService;
@@ -19,17 +19,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
     private TokenService tokenService;
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    public AuthServiceImpl(AuthenticationManager authenticationManager,
+                           TokenService tokenService,
+                           UserRepository userRepository,
+                           ModelMapper modelMapper) {
+        this.authenticationManager = authenticationManager;
+        this.tokenService = tokenService;
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public String auth(String login, String pass) {
@@ -44,10 +51,10 @@ public class AuthServiceImpl implements AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         User user = userRepository.findByEmail(login)
-                .map(e -> modelMapper.map(e, User.class ))
-                .orElseThrow(() -> new UserNotFoundException("User not found with login: " + login));
+                .map(e -> modelMapper.map(e, User.class))
+                .orElseThrow(() -> new NotFoundException("User not found with login: " + login));
 
-          return tokenService.createToken(user.getId());
+        return tokenService.createToken(user.getId());
     }
 
     public String registration(UserDto userDto) {

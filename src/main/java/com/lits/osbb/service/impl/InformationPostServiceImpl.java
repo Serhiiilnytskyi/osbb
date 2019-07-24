@@ -2,7 +2,7 @@ package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.InformationPostDto;
 import com.lits.osbb.model.InformationPost;
-import com.lits.osbb.repository.InformationPostService;
+import com.lits.osbb.repository.InformationPostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.stream.StreamSupport;
 public class InformationPostServiceImpl implements com.lits.osbb.service.InformationPostService {
 
     @Autowired
-    private InformationPostService informationPostRepository;
+    private InformationPostRepository informationPostRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -54,6 +54,6 @@ public class InformationPostServiceImpl implements com.lits.osbb.service.Informa
     }
     @Override
     public void delete(Long id){
-        informationPostRepository.delete(id);
+        informationPostRepository.delete(modelMapper.map(informationPostRepository,InformationPost.class));
     }
 }

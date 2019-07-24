@@ -3,13 +3,11 @@ package com.lits.osbb.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Getter
 @Setter
-public class PropositionDto implements Serializable {
+public class PropositionDto {
 
     private Long id;
 

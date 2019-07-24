@@ -11,10 +11,12 @@ spring:
     username: root
     password: root
 
+  liquibase:
+    change-log: classpath:/changelog/db.changelog-master.yaml
+
 security:
   token:
     secret: 9DKxk4ZuopLtywwSoyIR45mdLOiPa1zw
     expire: 24
 
-#liquibase:
-#change-log: classpath:/changelog/db.changelog-master.yaml
+
