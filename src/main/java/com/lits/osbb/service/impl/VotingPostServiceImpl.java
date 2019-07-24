@@ -1,8 +1,7 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.VotingPostDto;
-import com.lits.osbb.exception.IdNotFoundException;
-import com.lits.osbb.exception.TopicNotFoundException;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.VotingPost;
 import com.lits.osbb.repository.VotingPostRepository;
 import com.lits.osbb.service.VotingPostService;
@@ -31,7 +30,7 @@ public class VotingPostServiceImpl implements VotingPostService {
                 .map(e -> modelMapper.map(e, VotingPost.class))
                 .map(e -> votingPostRepository.save(e))
                 .map(e -> modelMapper.map(e, VotingPostDto.class))
-                .orElseThrow(() -> new TopicNotFoundException("????????????????? Nothing to save"));
+                .orElseThrow(() -> new NotFoundException("????????????????? Nothing to save"));
     }
 
     @Override
@@ -46,7 +45,7 @@ public class VotingPostServiceImpl implements VotingPostService {
 
     @Override
     public VotingPostDto getById(Long id){
-        VotingPost votingPost = votingPostRepository.findById(id).orElseThrow(()->new IdNotFoundException("Vote with ID: " + id +" not found"));
+        VotingPost votingPost = votingPostRepository.findById(id).orElseThrow(()->new NotFoundException("Vote with ID: " + id +" not found"));
         return modelMapper.map(votingPost, VotingPostDto.class);
     }
 

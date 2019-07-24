@@ -10,7 +10,7 @@ public interface PropositionService {
 
     PropositionDto findOneByTitle(String title);
 
-    //List<PropositionDto> findAll();
+    List<PropositionDto> findAll();
 
     PropositionDto save(PropositionDto propositionDto);
 
@@ -18,7 +18,4 @@ public interface PropositionService {
 
     void delete(PropositionDto propositionDto);
 
-    void delete(Long id);
-
-    List<PropositionDto> findAll();
 }
