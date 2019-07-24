@@ -73,9 +73,7 @@ public class VotingPostServiceImpl implements VotingPostService {
     }
 
     @Override
-    public VotingPostDto delete(VotingPostDto votingPostDto) {
+    public void delete(VotingPostDto votingPostDto) {
         votingPostRepository.delete(modelMapper.map(votingPostDto,VotingPost.class));
-        return votingPostDto;
     }
-
 }
