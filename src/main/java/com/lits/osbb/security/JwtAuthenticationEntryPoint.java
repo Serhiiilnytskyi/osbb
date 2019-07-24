@@ -1,9 +1,5 @@
 package com.lits.osbb.security;
 
-<<<<<<< HEAD
-import lombok.extern.log4j.Log4j;
-=======
->>>>>>> 1f0493ff60cb6ac98d04b50e4fdca82cd5eef719
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

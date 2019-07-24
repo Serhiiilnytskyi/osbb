@@ -69,17 +69,4 @@ public class PropositionServiceImpl implements PropositionService {
     public void delete(PropositionDto propositionDto) {
         propositionRepository.delete(modelMapper.map(propositionDto, Proposition.class));
     }
-<<<<<<< HEAD
-    
-    @Override
-    public void delete(Long id) {
-        propositionRepository.deleteById(id);
-    }
-
-    @Override
-    public List<PropositionDto> findAll() {
-        return null;
-    }
-=======
->>>>>>> 1f0493ff60cb6ac98d04b50e4fdca82cd5eef719
 }

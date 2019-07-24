@@ -13,8 +13,4 @@ public interface OsbbRepository extends CrudRepository<Osbb, Long> {
 
     List<Osbb> findAll();
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1f0493ff60cb6ac98d04b50e4fdca82cd5eef719
