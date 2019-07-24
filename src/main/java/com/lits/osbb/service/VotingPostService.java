@@ -2,19 +2,21 @@ package com.lits.osbb.service;
 
 import com.lits.osbb.dto.VotingPostDto;
 
+import java.util.List;
+
 public interface VotingPostService {
+
+    VotingPostDto findOne(Long id);
+
+    VotingPostDto findOneByTitle(String title);
+
+    VotingPostDto findOneByAuthor(String author);
+
+    List<VotingPostDto> findAll ();
 
     VotingPostDto save(VotingPostDto votingPostDto);
 
     VotingPostDto update(VotingPostDto votingPostDto);
 
-    VotingPostDto delete(VotingPostDto votingPostDto);
-
-    VotingPostDto getById(Long id);
-
-    VotingPostDto getByTitleContains(String title);
-
-    VotingPostDto getByAuthor(String title);
-
-
+    void delete(VotingPostDto votingPostDto);
 }

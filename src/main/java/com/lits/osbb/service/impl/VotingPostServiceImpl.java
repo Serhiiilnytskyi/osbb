@@ -9,7 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class VotingPostServiceImpl implements VotingPostService {
@@ -25,39 +27,55 @@ public class VotingPostServiceImpl implements VotingPostService {
     }
 
     @Override
+    public VotingPostDto findOne(Long id) {
+        return Optional.ofNullable(votingPostRepository.findOne(id))
+                .map(e -> modelMapper.map(e,VotingPostDto.class))
+                .orElseThrow(()->new NotFoundException("VotingPost with ID: "+id+" not found"));
+    }
+
+    @Override
+    public VotingPostDto findOneByTitle(String title) {
+        return Optional.ofNullable(votingPostRepository.findOneByTitle(title))
+                .map(e->modelMapper.map(e,VotingPostDto.class))
+                .orElseThrow(()->new NotFoundException("VotingPost with title: "+title+" not found"));
+    }
+
+    @Override
+    public VotingPostDto findOneByAuthor(String author) {
+        return Optional.ofNullable(votingPostRepository.findOneByAuthor(author))
+                .map(e->modelMapper.map(e,VotingPostDto.class))
+                .orElseThrow(()->new NotFoundException("VotingPost with author: "+author+" not found"));
+    }
+
+    @Override
+    public List<VotingPostDto> findAll() {
+        return votingPostRepository.findAll().stream()
+                .map(e->modelMapper.map(e,VotingPostDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public VotingPostDto save(VotingPostDto votingPostDto) {
-       return Optional.of(votingPostDto)
+        return Optional.of(votingPostDto)
                 .map(e -> modelMapper.map(e, VotingPost.class))
                 .map(e -> votingPostRepository.save(e))
                 .map(e -> modelMapper.map(e, VotingPostDto.class))
-                .orElseThrow(() -> new NotFoundException("????????????????? Nothing to save"));
+                .orElseThrow(() -> new NotFoundException("VotingPost could not be saved"));
     }
 
     @Override
     public VotingPostDto update(VotingPostDto votingPostDto) {
-        return null;
+        return Optional.of(votingPostDto)
+                .map(e -> modelMapper.map(e, VotingPost.class))
+                .map(e -> votingPostRepository.update(e))
+                .map(e -> modelMapper.map(e, VotingPostDto.class))
+                .orElseThrow(() -> new NotFoundException("VotingPost could not be update"));
     }
 
     @Override
     public VotingPostDto delete(VotingPostDto votingPostDto) {
-        return null;
+        votingPostRepository.delete(modelMapper.map(votingPostDto,VotingPost.class));
+        return votingPostDto;
     }
-
-    @Override
-    public VotingPostDto getById(Long id){
-        VotingPost votingPost = votingPostRepository.findById(id).orElseThrow(()->new NotFoundException("Vote with ID: " + id +" not found"));
-        return modelMapper.map(votingPost, VotingPostDto.class);
-    }
-
-    @Override
-    public VotingPostDto getByTitleContains(String title) {
-        return null;
-    }
-
-    @Override
-    public VotingPostDto getByAuthor(String title) {
-        return null;
-    }
-
 
 }
