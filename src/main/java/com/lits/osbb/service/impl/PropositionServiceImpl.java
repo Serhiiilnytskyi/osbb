@@ -1,7 +1,7 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.PropositionDto;
-import com.lits.osbb.exception.PropositionNotFoundException;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.Proposition;
 import com.lits.osbb.repository.PropositionRepository;
 import com.lits.osbb.service.PropositionService;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PropositionServiceImpl implements PropositionService {
@@ -29,22 +30,22 @@ public class PropositionServiceImpl implements PropositionService {
     public PropositionDto findOne(Long id) {
         return Optional.ofNullable(propositionRepository.findOneById(id))
                 .map(e -> modelMapper.map(e, PropositionDto.class))
-                .orElseThrow(()-> new PropositionNotFoundException("PropositionDto with id "+id+" not found"));
+                .orElseThrow(()-> new NotFoundException("PropositionDto with ID: "+id+" not found"));
     }
 
     @Override
     public PropositionDto findOneByTitle(String title) {
         return Optional.ofNullable(propositionRepository.findOneByTitle(title))
                 .map(e->modelMapper.map(e,PropositionDto.class))
-                .orElseThrow(()->new PropositionNotFoundException("PropositionDto with title "+title+" not found"));
+                .orElseThrow(()->new NotFoundException("PropositionDto with title "+title+" not found"));
     }
 
-//    @Override
-//    public List<PropositionDto> findAll() {
-//        return propositionRepository.findAll().stream()
-//                .map(e -> modelMapper.map(e, PropositionDto.class))
-//                .collect(Collectors.toList());
-//    }
+    @Override
+    public List<PropositionDto> findAll() {
+        return propositionRepository.findAll().stream()
+                .map(e -> modelMapper.map(e, PropositionDto.class))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public PropositionDto save(PropositionDto propositionDto) {
@@ -52,7 +53,7 @@ public class PropositionServiceImpl implements PropositionService {
                 .map(e -> modelMapper.map(e, Proposition.class))
                 .map(e -> propositionRepository.save(e))
                 .map(e -> modelMapper.map(e, PropositionDto.class))
-                .orElseThrow(()->new PropositionNotFoundException("PropositionDto could not be saved"));
+                .orElseThrow(()->new NotFoundException("PropositionDto could not be saved"));
     }
 
     @Override
@@ -61,21 +62,11 @@ public class PropositionServiceImpl implements PropositionService {
                 .map(e -> modelMapper.map(e, Proposition.class))
                 .map(e -> propositionRepository.save(e))
                 .map(e -> modelMapper.map(e, PropositionDto.class))
-                .orElseThrow(()->new PropositionNotFoundException("PropositionDto could not be update"));
+                .orElseThrow(()->new NotFoundException("PropositionDto could not be update"));
     }
 
     @Override
     public void delete(PropositionDto propositionDto) {
         propositionRepository.delete(modelMapper.map(propositionDto, Proposition.class));
-    }
-    
-    @Override
-    public void delete(Long id) {
-        propositionRepository.delete(id);
-    }
-
-    @Override
-    public List<PropositionDto> findAll() {
-        return null;
     }
 }

@@ -1,7 +1,7 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.UserDto;
-import com.lits.osbb.exception.UserNotFoundException;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.User;
 import com.lits.osbb.repository.UserRepository;
 import com.lits.osbb.service.AuthService;
@@ -52,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         User user = userRepository.findByEmail(login)
                 .map(e -> modelMapper.map(e, User.class))
-                .orElseThrow(() -> new UserNotFoundException("User not found with login: " + login));
+                .orElseThrow(() -> new NotFoundException("User not found with login: " + login));
 
         return tokenService.createToken(user.getId());
     }

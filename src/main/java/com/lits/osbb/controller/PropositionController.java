@@ -7,9 +7,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api
@@ -26,32 +26,32 @@ public class PropositionController {
 
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
-    public PropositionDto save(@Validated @RequestBody PropositionDto propositionDto){
-        return propositionService.save(propositionDto);
+    public ResponseEntity<PropositionDto> save(@Valid @RequestBody PropositionDto propositionDto){
+        return new ResponseEntity<>(propositionService.save(propositionDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getAll")
     @GetMapping(value = "/getAll")
-    public List<PropositionDto> findAll(){
-        return propositionService.findAll();
+    public ResponseEntity<List<PropositionDto>> findAll(){
+        return new ResponseEntity<>(propositionService.findAll(),HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneById")
     @GetMapping(value = "/getOneById/{id}")
-    public PropositionDto findOne(@RequestParam(value = "id", defaultValue = "") Long id){
-        return propositionService.findOne(id);
+    public ResponseEntity<PropositionDto> findOne(@RequestParam(value = "id", defaultValue = "") Long id){
+        return new ResponseEntity<>(propositionService.findOne(id),HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneByTitle")
     @GetMapping(value = "/getOneByTitle/{title}")
-    public PropositionDto findOneByTitle(@RequestParam(value = "title", defaultValue = "") String title){
-        return propositionService.findOneByTitle(title);
+    public ResponseEntity<PropositionDto> findOneByTitle(@RequestParam(value = "title", defaultValue = "") String title){
+        return new ResponseEntity<>(propositionService.findOneByTitle(title), HttpStatus.OK);
     }
 
     @ApiOperation(value = "update")
-    @PutMapping(value = "/update/{propositionDto}")
-    public PropositionDto update(@RequestParam(value = "propositionDto", defaultValue = "") PropositionDto propositionDto){
-        return propositionService.update(propositionDto);
+    @PutMapping(value = "/update")
+    public ResponseEntity<PropositionDto> update(@RequestBody PropositionDto propositionDto){
+        return new ResponseEntity<>(propositionService.update(propositionDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "delete")
@@ -60,9 +60,4 @@ public class PropositionController {
         return new ResponseEntity<>(propositionDto, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "deleteOneById")
-    @DeleteMapping(value = "/deleteOneById/{id}")
-    public ResponseEntity<Long> delete(@RequestParam(value = "id") Long id){
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }
 }

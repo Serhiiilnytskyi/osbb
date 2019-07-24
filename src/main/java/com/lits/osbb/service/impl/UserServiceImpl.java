@@ -1,7 +1,7 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.UserDto;
-import com.lits.osbb.exception.UserNotFoundException;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.User;
 import com.lits.osbb.repository.UserRepository;
 import com.lits.osbb.service.UserService;
@@ -11,7 +11,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -33,9 +32,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String s) throws NotFoundException {
         User user = userRepository.findByEmail(s)
-                .orElseThrow(() -> new UserNotFoundException("User with name: " + s + " not found"));
+                .orElseThrow(() -> new NotFoundException("User with name: " + s + " not found"));
 
         //todo add correct auth
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
@@ -55,7 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDto findOne(Long id) {
         return userRepository.findById(id)
                 .map(e -> modelMapper.map(e, UserDto.class))
-                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found"));
+                .orElseThrow(() -> new NotFoundException("User with id: " + id + " not found"));
     }
 
     @Override
@@ -72,23 +71,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .map(e -> modelMapper.map(e, User.class))
                 .map(e -> userRepository.save(e))
                 .map(e -> modelMapper.map(e, UserDto.class))
-                .orElseThrow(() -> new UserNotFoundException("UserDto Object is null. Nothing to save"));
+                .orElseThrow(() -> new NotFoundException("UserDto Object is null. Nothing to save"));
     }
 
     @Override
     public UserDto update(Long id, UserDto userDto) {
         User user = Optional.of(userDto)
                 .map(e -> modelMapper.map(e, User.class))
-                .orElseThrow(() -> new UserNotFoundException("UserDto Object is null. Nothing to update"));
+                .orElseThrow(() -> new NotFoundException("UserDto Object is null. Nothing to update"));
         user.setId(id);
 
         return Optional.of(userRepository.save(user))
                 .map(e -> modelMapper.map(e, UserDto.class))
-                .orElseThrow(() -> new UserNotFoundException("User not saved"));
+                .orElseThrow(() -> new NotFoundException("User not saved"));
     }
 
     @Override
     public void delete(Long id) {
-        userRepository.delete(id);
+        userRepository.deleteById(id);
     }
 }
