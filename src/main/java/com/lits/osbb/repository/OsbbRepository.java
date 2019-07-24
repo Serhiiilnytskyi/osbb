@@ -1,7 +1,6 @@
 package com.lits.osbb.repository;
 
 import com.lits.osbb.model.Osbb;
-import com.lits.osbb.model.Osbb;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

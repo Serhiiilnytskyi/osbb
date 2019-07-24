@@ -1,7 +1,7 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.OsbbDto;
-import com.lits.osbb.exception.OsbbNotFoundException;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.Osbb;
 import com.lits.osbb.repository.OsbbRepository;
 import com.lits.osbb.service.OsbbService;
@@ -29,7 +29,7 @@ public class OsbbServiceImpl implements OsbbService {
     public OsbbDto findOne(Long id) {
         return osbbRepository.findById(id)
                 .map(e -> modelMapper.map(e, OsbbDto.class))
-                .orElseThrow(() -> new OsbbNotFoundException("Osbb with id: " + id + " not found"));
+                .orElseThrow(() -> new NotFoundException("Osbb with id: " + id + " not found"));
     }
 
     @Override
@@ -46,19 +46,19 @@ public class OsbbServiceImpl implements OsbbService {
                 .map(e -> modelMapper.map(e, Osbb.class))
                 .map(e -> osbbRepository.save(e))
                 .map(e -> modelMapper.map(e, OsbbDto.class))
-                .orElseThrow(() -> new OsbbNotFoundException("OsbbDto Object is null. Nothing to save"));
+                .orElseThrow(() -> new NotFoundException("OsbbDto Object is null. Nothing to save"));
     }
 
     @Override
     public OsbbDto update(Long id, OsbbDto osbbDto) {
         Osbb osbb = Optional.of(osbbDto)
                 .map(e -> modelMapper.map(e, Osbb.class))
-                .orElseThrow(() -> new OsbbNotFoundException("OsbbDto Object is null. Nothing to update"));
+                .orElseThrow(() -> new NotFoundException("OsbbDto Object is null. Nothing to update"));
         osbb.setId(id);
 
         return Optional.of(osbbRepository.save(osbb))
                 .map(e -> modelMapper.map(e, OsbbDto.class))
-                .orElseThrow(() -> new OsbbNotFoundException("Osbb not saved"));
+                .orElseThrow(() -> new NotFoundException("Osbb not saved"));
     }
 
     @Override
