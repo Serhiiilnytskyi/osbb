@@ -1,9 +1,9 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.InformationPostDto;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.InformationPost;
 import com.lits.osbb.repository.InformationPostRepository;
-import com.lits.osbb.service.InformationPostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,53 +14,47 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class InformationPostServiceImpl implements InformationPostService {
-
-    private InformationPostRepository informationPostRepository;
-
-    private ModelMapper modelMapper;
+public class InformationPostServiceImpl implements com.lits.osbb.service.InformationPostService {
 
     @Autowired
-    public InformationPostServiceImpl(InformationPostRepository informationPostRepository, ModelMapper modelMapper) {
-        this.informationPostRepository = informationPostRepository;
-        this.modelMapper = modelMapper;
-    }
+    private InformationPostRepository informationPostRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
-    public InformationPostDto findOne(Long id) {
+
+    @Override
+    public InformationPostDto findOne(Long id){
         return Optional.ofNullable(informationPostRepository.findOneById(id))
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
-                .orElse(new InformationPostDto());
+                .orElseThrow(() -> new NotFoundException( "Did not find "+ id +" post "));
     }
-
-    public List<InformationPostDto> findAll() {
+    @Override
+    public List<InformationPostDto> findAll(){
         return StreamSupport.stream(informationPostRepository.findAll().spliterator(), false)
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
                 .collect(Collectors.toList());
     }
-
-    public InformationPostDto save(InformationPostDto informationPostDto) {
+    @Override
+    public InformationPostDto save(InformationPostDto informationPostDto){
         return Optional.ofNullable(informationPostDto)
                 .map(e -> modelMapper.map(e, InformationPost.class))
                 .map(e -> informationPostRepository.save(e))
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
-                .orElse(new InformationPostDto());
+                .orElseThrow(() -> new NotFoundException( "Did not save "+ informationPostDto +" post "));
     }
-
-    public InformationPostDto update(InformationPostDto informationPostDto) {
+    @Override
+    public InformationPostDto update(InformationPostDto informationPostDto){
         return Optional.ofNullable(informationPostDto)
-                .map(e -> modelMapper.map(e, InformationPost.class))
-                .map(e -> informationPostRepository.save(e))
-                .map(e -> modelMapper.map(e, InformationPostDto.class))
-                .orElse(new InformationPostDto());
-    }
-
-    ;
-
-    public void delete(InformationPostDto informationPostDto) {
+            .map(e -> modelMapper.map(e, InformationPost.class))
+            .map(e -> informationPostRepository.save(e))
+            .map(e -> modelMapper.map(e, InformationPostDto.class))
+                .orElseThrow(() -> new NotFoundException( "Did not update "+ informationPostDto +" post "));};
+    @Override
+    public void delete(InformationPostDto informationPostDto){
         informationPostRepository.delete(modelMapper.map(informationPostDto, InformationPost.class));
     }
-
-    public void delete(Long id) {
-        informationPostRepository.deleteById(id);
+    @Override
+    public void delete(Long id){
+        informationPostRepository.delete(modelMapper.map(informationPostRepository,InformationPost.class));
     }
 }

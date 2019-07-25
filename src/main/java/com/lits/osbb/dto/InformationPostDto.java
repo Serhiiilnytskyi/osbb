@@ -1,11 +1,16 @@
 package com.lits.osbb.dto;
 
 import com.lits.osbb.model.Post;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
 
+import javax.persistence.*;
+import java.util.Date;
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class InformationPostDto implements Post {
