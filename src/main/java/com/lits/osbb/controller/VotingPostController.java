@@ -63,5 +63,5 @@ public class VotingPostController {
     public ResponseEntity<?> delete(@RequestParam Long id) {
         votingPostService.delete(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
-    }//todo
+    }
 }

@@ -4,6 +4,11 @@ package com.lits.osbb.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -12,13 +17,11 @@ public class OsbbDto {
 
     private Long id;
 
-    private String firstName;
+    @NotNull
+    @Size(max = 64)
+    private String name;
 
-    private String secondName;
+    private List<UserDto> members = new ArrayList<>();
 
-    private String email;
-
-    private String password;
-
-    private Set<RoleDto> roles;
+    private Set<AddressDto> address = new HashSet<>();
 }

@@ -41,27 +41,23 @@ public class OsbbApplication implements ApplicationRunner {
     //TODO delete when production
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        Role role = new Role();
-//
-//        role.setName("ADMIN");
-//
-//        User user = new User();
-//                user.setFirstName("admin");
-//                user.setSecondName("admin");
-//                user.setEmail("admin@gmail.com");
-//                user.setRoles(new HashSet<Role>() {{
-//                    add(role);
-//                }});
-//                user.setPassword(passwordEncoder.encode("admin"));
-//                Osbb osbb = new Osbb();
-//                osbb.setName("SomeOsbb");
-//        osbbRepository.save(osbb);
-//                user.setOsbb(osbb);
-//
-//
-//
-//        roleRepository.save(role);
-//        userRepository.save(user);
+
+        Role role = roleRepository.findById(2L).orElseThrow(() -> new RuntimeException("some"));
+
+        User user = new User();
+        user.setFirstName("admin");
+        user.setSecondName("admin");
+        user.setEmail("admin@gmail.com");
+        user.setRoles(new HashSet<Role>() {{
+            add(role);
+        }});
+        user.setPassword(passwordEncoder.encode("F,hfrflf,hf314"));
+        Osbb osbb = new Osbb();
+        osbb.setName("SomeOsbb");
+        osbbRepository.save(osbb);
+        user.setOsbb(osbb);
+
+        userRepository.save(user);
 
     }
 }
