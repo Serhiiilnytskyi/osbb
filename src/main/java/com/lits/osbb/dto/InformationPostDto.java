@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,8 +17,12 @@ public class InformationPostDto {
 
     private Long id;
 
+    @NotNull
+    @Size(max = 64)
     private String title;
 
+    @NotNull
+    @Size(max = 64)
     private String body;
 
     private Date beginDate;
