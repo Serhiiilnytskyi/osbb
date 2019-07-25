@@ -14,8 +14,7 @@ public interface PropositionService {
 
     PropositionDto save(PropositionDto propositionDto);
 
-    PropositionDto update(PropositionDto propositionDto);
+    void delete(Long id);
 
-    void delete(PropositionDto propositionDto);
-
+    Object update(Long id, PropositionDto propositionDto);
 }

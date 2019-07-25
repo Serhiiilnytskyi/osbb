@@ -1,60 +1,70 @@
 package com.lits.osbb.controller;
+
 import com.lits.osbb.dto.InformationPostDto;
 import com.lits.osbb.repository.InformationPostRepository;
+import com.lits.osbb.service.InformationPostService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(value = "/api/informationPost")
+@RequestMapping(value = "/informationPosts")
 public class InformationPostController {
 
+    private InformationPostService informationPostService;
 
-    private InformationPostRepository informationPostService;
-
-    @Autowired
-    public InformationPostController(InformationPostRepository informationPostRepository) {
-        this.informationPostService = informationPostRepository;
+    public InformationPostController(InformationPostService informationPostService) {
+        this.informationPostService = informationPostService;
     }
 
     @ApiOperation(value = "getAll")
-    @GetMapping(value = "/getAll")
-    public ResponseEntity<List<?>> findAll(){
-        return new ResponseEntity(informationPostService.findAll(), HttpStatus.OK);
-    }
-    @ApiOperation(value = "getOneById")
-    @GetMapping(value = "/{id}")
-    ResponseEntity<?> findOne(@RequestParam (value = "id",defaultValue = "") Long id){
-        return new ResponseEntity(informationPostService.findById(id), HttpStatus.OK);
-    }
-    @ApiOperation(value = "delete")
-    @PostMapping(value = "/delete/{id}")
-    ResponseEntity deleteOneById(@PathVariable("id")Long id){
-        return new ResponseEntity(informationPostService,HttpStatus.OK);
+    @GetMapping(value = "/")
+    public ResponseEntity<?> findAll() {
+        return new ResponseEntity<>(informationPostService.findAll(), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "save")
-    @RequestMapping(value = "/save/{id}")
-    ResponseEntity<?> saveAffiche(@RequestParam(value = "informationPostDto")InformationPostDto informationPostDto){
-        return new ResponseEntity(informationPostService.save(informationPostDto),HttpStatus.OK);
+    @ApiOperation(value = "getOneById")
+    @GetMapping(value = "/{id}")
+    ResponseEntity<?> findOne(@RequestParam(value = "id", defaultValue = "") Long id) {
+        return new ResponseEntity<>(informationPostService.findOne(id), HttpStatus.OK);
     }
+
 
     @ApiOperation(value = "getOneByTitle")
     @GetMapping(value = "/getOneByTitle/{title}")
-    public ResponseEntity<?> findOneByTitle(@RequestParam (value = "title",defaultValue = "") String title){
-        return new ResponseEntity(informationPostService.findOneByTitle(title),HttpStatus.OK);
+    public ResponseEntity<?> findOneByTitle(@RequestParam(value = "title") String title) {
+        return new ResponseEntity<>(informationPostService.findOneByTitle(title), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneByAuthor")
     @GetMapping(value = "/getOneByAuthor/{author}")
-    private ResponseEntity<?> findOneByAuthor(@RequestParam (value = "author",defaultValue = "") String author){
-        return new ResponseEntity(informationPostService.findOneByAuthor(author),HttpStatus.OK);
+    private ResponseEntity<?> findOneByAuthor(@RequestParam(value = "author") String author) {
+        return new ResponseEntity<>(informationPostService.findOneByAuthor(author), HttpStatus.OK);
     }
 
+
+    @ApiOperation(value = "save")
+    @PostMapping(value = "/")
+    ResponseEntity<?> save(@RequestBody InformationPostDto informationPostDto) {
+        return new ResponseEntity<>(informationPostService.save(informationPostDto), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "update")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PutMapping(value = "/{id}")
+    ResponseEntity<?> update(@RequestParam Long id, @RequestBody InformationPostDto informationPostDto) {
+        return new ResponseEntity<>(informationPostService.update(id, informationPostDto), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "delete")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @DeleteMapping(value = "/{id}")
+    ResponseEntity<?> delete(@PathVariable("id") Long id) {
+        informationPostService.delete(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 
 
 }
