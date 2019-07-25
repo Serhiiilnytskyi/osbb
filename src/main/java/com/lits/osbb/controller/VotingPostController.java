@@ -56,6 +56,7 @@ public class VotingPostController {
     @PutMapping(value = "/update")
     public ResponseEntity<VotingPostDto> update(@RequestBody VotingPostDto votingPostDto){
         return new ResponseEntity<>(votingPostService.update(votingPostDto),HttpStatus.OK);
+
     }
 
     @ApiOperation(value = "delete")

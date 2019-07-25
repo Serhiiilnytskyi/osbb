@@ -1,14 +1,22 @@
 package com.lits.osbb.repository;
 
+import com.lits.osbb.dto.InformationPostDto;
 import com.lits.osbb.model.InformationPost;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.http.ResponseEntity;
 
-@Repository
 public interface InformationPostRepository extends CrudRepository<InformationPost, Long> {
 
     InformationPost findOneById (Long Id);
-//    InformationPost findOneByDate (Date date);
-//    InformationPost findOneByName (String name);
+
+    ResponseEntity<?> save(InformationPostDto informasionPostDto);
+
+    void delete(InformationPost e);
+
+    InformationPost findOneByTitle(String title);
+
+    InformationPost findOneByAuthor(String author);
+
+    InformationPost findOne(Long id);
 
 }
