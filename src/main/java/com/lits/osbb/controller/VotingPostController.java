@@ -24,44 +24,44 @@ public class VotingPostController {
 
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
-    public ResponseEntity<VotingPostDto> save(@Valid @RequestBody VotingPostDto votingPostDto){
+    public ResponseEntity<VotingPostDto> save(@Valid @RequestBody VotingPostDto votingPostDto) {
         return new ResponseEntity<>(votingPostService.save(votingPostDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getAll")
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<VotingPostDto>> findAll(){
-        return new ResponseEntity<>(votingPostService.findAll(),HttpStatus.OK);
+    public ResponseEntity<List<VotingPostDto>> findAll() {
+        return new ResponseEntity<>(votingPostService.findAll(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneById")
     @GetMapping(value = "/getOneById/{id}")
-    public ResponseEntity<VotingPostDto> findOne(@RequestParam (value = "id",defaultValue = "") Long id){
-        return new ResponseEntity<>(votingPostService.findOne(id),HttpStatus.OK);
+    public ResponseEntity<VotingPostDto> findOne(@RequestParam(value = "id", defaultValue = "") Long id) {
+        return new ResponseEntity<>(votingPostService.findOne(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneByTitle")
     @GetMapping(value = "/getOneByTitle/{title}")
-    public ResponseEntity<VotingPostDto> findOneByTitle(@RequestParam (value = "title",defaultValue = "") String title){
-        return new ResponseEntity<>(votingPostService.findOneByTitle(title),HttpStatus.OK);
+    public ResponseEntity<VotingPostDto> findOneByTitle(@RequestParam(value = "title", defaultValue = "") String title) {
+        return new ResponseEntity<>(votingPostService.findOneByTitle(title), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneByAuthor")
     @GetMapping(value = "/getOneByAuthor/{author}")
-    private ResponseEntity<VotingPostDto> findOneByAuthor(@RequestParam (value = "author",defaultValue = "") String author){
-        return new ResponseEntity<>(votingPostService.findOneByAuthor(author),HttpStatus.OK);
+    private ResponseEntity<VotingPostDto> findOneByAuthor(@RequestParam(value = "author", defaultValue = "") String author) {
+        return new ResponseEntity<>(votingPostService.findOneByAuthor(author), HttpStatus.OK);
     }
 
     @ApiOperation(value = "update")
     @PutMapping(value = "/update")
-    public ResponseEntity<VotingPostDto> update(@RequestBody VotingPostDto votingPostDto){
-        return new ResponseEntity<>(votingPostService.update(votingPostDto),HttpStatus.OK);
+    public ResponseEntity<VotingPostDto> update(@RequestBody VotingPostDto votingPostDto) {
+        return new ResponseEntity<>(votingPostService.update(votingPostDto), HttpStatus.OK);
 
     }
 
     @ApiOperation(value = "delete")
     @DeleteMapping(value = "/delete/{votingPostDto}")
-    public ResponseEntity<VotingPostDto> delete(@RequestParam(value = "votingPostDto") VotingPostDto votingPostDto){
-        return new ResponseEntity<>(votingPostDto,HttpStatus.OK);
+    public ResponseEntity<VotingPostDto> delete(@RequestParam(value = "votingPostDto") VotingPostDto votingPostDto) {
+        return new ResponseEntity<>(votingPostDto, HttpStatus.OK);
     }
 }

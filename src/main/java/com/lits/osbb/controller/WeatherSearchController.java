@@ -9,19 +9,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @Controller
 @CrossOrigin("*")
-public class WeatherSearchController{
+public class WeatherSearchController {
 
     private final WeatherService weatherService;
 
@@ -47,10 +45,10 @@ public class WeatherSearchController{
         return ResponseEntity.ok(weatherSummaryList);
     }
 
-    protected List<WeatherSummary> getSummary(String city){
+    protected List<WeatherSummary> getSummary(String city) {
         List<WeatherSummary> summary = new ArrayList<>();
         Weather weather = this.weatherService.getWeather(city);
-        if(weather!=null) {
+        if (weather != null) {
             summary.add(new WeatherSummary(city, weather));
         }
         return summary;

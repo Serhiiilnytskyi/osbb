@@ -16,7 +16,6 @@ public class AuthController {
 
     private AuthServiceImpl authService;
 
-    @Autowired
     public AuthController(AuthServiceImpl authService) {
         this.authService = authService;
     }

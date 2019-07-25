@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/osbbs")
 public class OsbbController {
 
     private OsbbService osbbService;
@@ -21,40 +21,40 @@ public class OsbbController {
     public OsbbController(OsbbService osbbService) {
         this.osbbService = osbbService;
     }
-    
+
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
-    public OsbbDto save(@Validated @RequestBody OsbbDto osbbDto){
+    public OsbbDto save(@Validated @RequestBody OsbbDto osbbDto) {
         return osbbService.save(osbbDto);
     }
 
     @ApiOperation(value = "getAll")
     @GetMapping(value = "/getAll")
-    public List<OsbbDto> findAll(){
+    public List<OsbbDto> findAll() {
         return osbbService.findAll();
     }
 
     @ApiOperation(value = "getOneById")
     @GetMapping(value = "/getOneById/{id}")
-    public OsbbDto findOne(@RequestParam(value = "id", defaultValue = "") Long id){
+    public OsbbDto findOne(@RequestParam(value = "id", defaultValue = "") Long id) {
         return osbbService.findOne(id);
     }
 
     @ApiOperation(value = "update")
     @PutMapping(value = "/update/{id}")
-    public OsbbDto update(@RequestParam Long id, @RequestBody OsbbDto osbbDto){
+    public OsbbDto update(@RequestParam Long id, @RequestBody OsbbDto osbbDto) {
         return osbbService.update(id, osbbDto);
     }
 
     @ApiOperation(value = "delete")
     @DeleteMapping(value = "/delete/{osbbDto}")
-    public ResponseEntity<OsbbDto> delete(@RequestParam(value = "osbbDto") OsbbDto osbbDto){
+    public ResponseEntity<OsbbDto> delete(@RequestParam(value = "osbbDto") OsbbDto osbbDto) {
         return new ResponseEntity<>(osbbDto, HttpStatus.OK);
     }
 
     @ApiOperation(value = "deleteOneById")
     @DeleteMapping(value = "/deleteOneById/{id}")
-    public ResponseEntity<Long> delete(@RequestParam(value = "id") Long id){
+    public ResponseEntity<Long> delete(@RequestParam(value = "id") Long id) {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 

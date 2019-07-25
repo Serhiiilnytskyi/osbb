@@ -71,23 +71,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .cors()
-                    .and()
+                .and()
                 .csrf()
-                    .disable()
+                .disable()
                 .exceptionHandling()
-                    .authenticationEntryPoint(unauthorizedHandler)
-                    .and()
+                .authenticationEntryPoint(unauthorizedHandler)
+                .and()
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                    .antMatchers("/api/login","/weather_search")
-                    .permitAll()
-                //.antMatchers("/actuator/**").permitAll()
-                .antMatchers("/actuator/**","/weather_search")
-                    .hasAuthority("ROLE_ADMIN")
-                .antMatchers(HttpMethod.GET,AUTH_WHITELIST)
-                    .permitAll()
+                .antMatchers("/api/login", "/weather_search")
+                .permitAll()
+                .antMatchers("/actuator/**", "/weather_search")
+                .hasAuthority("ROLE_ADMIN")
+                .antMatchers(HttpMethod.GET, AUTH_WHITELIST)
+                .permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity
@@ -105,12 +104,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedMethods(Arrays.asList("HEAD",
                 "GET", "POST", "PUT", "DELETE", "PATCH"));
 
-        // setAllowCredentials(true) is important, otherwise:
-        // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
         configuration.setAllowCredentials(true);
 
-        // setAllowedHeaders is important! Without it, OPTIONS preflight request
-        // will fail with 403 Invalid CORS request
         configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Headers",
                 "Origin", "X-Requested-With", "Authorization", "Cache-Control", "Content-Type"));
 

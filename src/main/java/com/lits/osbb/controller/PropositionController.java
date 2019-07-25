@@ -26,38 +26,38 @@ public class PropositionController {
 
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
-    public ResponseEntity<PropositionDto> save(@Valid @RequestBody PropositionDto propositionDto){
+    public ResponseEntity<PropositionDto> save(@Valid @RequestBody PropositionDto propositionDto) {
         return new ResponseEntity<>(propositionService.save(propositionDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getAll")
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<PropositionDto>> findAll(){
-        return new ResponseEntity<>(propositionService.findAll(),HttpStatus.OK);
+    public ResponseEntity<List<PropositionDto>> findAll() {
+        return new ResponseEntity<>(propositionService.findAll(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneById")
     @GetMapping(value = "/getOneById/{id}")
-    public ResponseEntity<PropositionDto> findOne(@RequestParam(value = "id", defaultValue = "") Long id){
-        return new ResponseEntity<>(propositionService.findOne(id),HttpStatus.OK);
+    public ResponseEntity<PropositionDto> findOne(@RequestParam(value = "id", defaultValue = "") Long id) {
+        return new ResponseEntity<>(propositionService.findOne(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneByTitle")
     @GetMapping(value = "/getOneByTitle/{title}")
-    public ResponseEntity<PropositionDto> findOneByTitle(@RequestParam(value = "title", defaultValue = "") String title){
+    public ResponseEntity<PropositionDto> findOneByTitle(@RequestParam(value = "title", defaultValue = "") String title) {
         return new ResponseEntity<>(propositionService.findOneByTitle(title), HttpStatus.OK);
     }
 
     @ApiOperation(value = "update")
     @PutMapping(value = "/update")
-    public ResponseEntity<PropositionDto> update(@RequestBody PropositionDto propositionDto){
+    public ResponseEntity<PropositionDto> update(@RequestBody PropositionDto propositionDto) {
         return new ResponseEntity<>(propositionService.update(propositionDto), HttpStatus.OK);
 
     }
 
     @ApiOperation(value = "delete")
     @DeleteMapping(value = "/delete/{propositionDto}")
-    public ResponseEntity<PropositionDto> delete(@RequestParam(value = "propositionDto") PropositionDto propositionDto){
+    public ResponseEntity<PropositionDto> delete(@RequestParam(value = "propositionDto") PropositionDto propositionDto) {
         return new ResponseEntity<>(propositionDto, HttpStatus.OK);
     }
 

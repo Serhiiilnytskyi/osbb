@@ -76,7 +76,6 @@ public class SwaggerConfig {
 
     private ApiKey apiKey() {
         return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
-//        schemeList.add(new ApiKey(HttpHeaders.AUTHORIZATION, "JWT", "header"));
     }
 
     private SecurityContext securityContext() {
