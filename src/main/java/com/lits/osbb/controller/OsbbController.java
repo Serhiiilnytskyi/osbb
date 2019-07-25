@@ -36,14 +36,14 @@ public class OsbbController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/")
     public ResponseEntity<?> save(@Valid @RequestBody OsbbDto osbbDto) {
-        return new ResponseEntity<>(osbbService.save(osbbDto), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(osbbService.save(osbbDto), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "update")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@RequestParam Long id, @Valid @RequestBody OsbbDto osbbDto) {
-        return new ResponseEntity<>(osbbService.update(id, osbbDto), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(osbbService.update(id, osbbDto), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "delete")
