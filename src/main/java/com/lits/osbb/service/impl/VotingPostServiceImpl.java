@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+
 @Service
 public class VotingPostServiceImpl implements VotingPostService {
 
@@ -32,10 +33,11 @@ public class VotingPostServiceImpl implements VotingPostService {
     @Override
 
     public VotingPostDto findOne(Long id) {
-        return Optional.ofNullable(votingPostRepository.findById(id))
+        return Optional.ofNullable(votingPostRepository.findOne(id))
                 .map(e -> modelMapper.map(e,VotingPostDto.class))
                 .orElseThrow(()->new NotFoundException("VotingPost with ID: "+id+" not found"));
     }
+
 
     @Override
     public VotingPostDto findOneByTitle(String title) {
@@ -53,6 +55,13 @@ public class VotingPostServiceImpl implements VotingPostService {
 
 
     @Override
+    public VotingPostDto getById(Long id){
+        VotingPost votingPost = votingPostRepository.findById(id).orElseThrow(()->new NotFoundException("Vote with ID: " + id +" not found"));
+        return modelMapper.map(votingPost, VotingPostDto.class);
+
+    }
+
+    @Override
     public VotingPostDto save(VotingPostDto votingPostDto) {
         return Optional.of(votingPostDto)
                 .map(e -> modelMapper.map(e, VotingPost.class))
@@ -62,27 +71,17 @@ public class VotingPostServiceImpl implements VotingPostService {
     }
 
     @Override
-    public VotingPostDto update(Long id ,VotingPostDto votingPostDto) {
-        VotingPost votingPost = Optional.of(votingPostDto)
+    public VotingPostDto update(VotingPostDto votingPostDto) {
+        return Optional.of(votingPostDto)
                 .map(e -> modelMapper.map(e, VotingPost.class))
-                .orElseThrow(() -> new NotFoundException("VotingPost Object is null. Nothing to update"));
-        votingPost.setId(id);
-
-        return Optional.of(votingPostRepository.save(votingPost))
+                .map(e -> votingPostRepository.update(e))
                 .map(e -> modelMapper.map(e, VotingPostDto.class))
-                .orElseThrow(() -> new NotFoundException("VotingPost not saved"));
+                .orElseThrow(() -> new NotFoundException("VotingPost could not be update"));
     }
 
     @Override
     public void delete(VotingPostDto votingPostDto) {
         votingPostRepository.delete(modelMapper.map(votingPostDto,VotingPost.class));
     }
-
-    @Override
-    public List<VotingPostDto> findAll(){
-        return votingPostRepository.findAll().stream()
-                .map(e->modelMapper.map(e,VotingPostDto.class))
-                .collect(Collectors.toList());
-    }
-
 }
+

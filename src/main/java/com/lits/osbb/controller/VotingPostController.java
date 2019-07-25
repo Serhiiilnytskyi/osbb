@@ -54,8 +54,9 @@ public class VotingPostController {
 
     @ApiOperation(value = "update")
     @PutMapping(value = "/update")
-    public ResponseEntity<VotingPostDto> update(@RequestParam Long id, @RequestBody VotingPostDto votingPostDto){
-        return new ResponseEntity<>(votingPostService.update(id,votingPostDto),HttpStatus.OK);
+    public ResponseEntity<VotingPostDto> update(@RequestBody VotingPostDto votingPostDto){
+        return new ResponseEntity<>(votingPostService.update(votingPostDto),HttpStatus.OK);
+
     }
 
     @ApiOperation(value = "delete")

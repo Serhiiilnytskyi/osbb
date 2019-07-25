@@ -16,9 +16,8 @@ public interface VotingPostService {
 
     VotingPostDto save(VotingPostDto votingPostDto);
 
-    VotingPostDto update(Long id , VotingPostDto votingPostDto);
+    VotingPostDto update(VotingPostDto votingPostDto);
 
     void delete(VotingPostDto votingPostDto);
-
-
 }
+
