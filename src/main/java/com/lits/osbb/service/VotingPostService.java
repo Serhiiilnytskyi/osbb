@@ -14,6 +14,8 @@ public interface VotingPostService {
 
     List<VotingPostDto> findAll ();
 
+    VotingPostDto getById(Long id);
+
     VotingPostDto save(VotingPostDto votingPostDto);
 
     VotingPostDto update(VotingPostDto votingPostDto);
