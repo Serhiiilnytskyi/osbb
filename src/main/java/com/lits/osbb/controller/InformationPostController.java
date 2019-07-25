@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/informationPosts")
 public class InformationPostController {
@@ -40,21 +42,21 @@ public class InformationPostController {
 
     @ApiOperation(value = "getOneByAuthor")
     @GetMapping(value = "/getOneByAuthor/{author}")
-    private ResponseEntity<?> findOneByAuthor(@RequestParam(value = "author") String author) {
+    private ResponseEntity<?> findOneByAuthor(@Valid @RequestParam(value = "author") String author) {
         return new ResponseEntity<>(informationPostService.findOneByAuthor(author), HttpStatus.OK);
     }
 
 
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
-    ResponseEntity<?> save(@RequestBody InformationPostDto informationPostDto) {
+    ResponseEntity<?> save(@Valid @RequestBody InformationPostDto informationPostDto) {
         return new ResponseEntity<>(informationPostService.save(informationPostDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "update")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping(value = "/{id}")
-    ResponseEntity<?> update(@RequestParam Long id, @RequestBody InformationPostDto informationPostDto) {
+    ResponseEntity<?> update( @RequestParam Long id, @Valid @RequestBody InformationPostDto informationPostDto) {
         return new ResponseEntity<>(informationPostService.update(id, informationPostDto), HttpStatus.OK);
     }
 

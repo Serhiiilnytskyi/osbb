@@ -38,14 +38,14 @@ public class PropositionController {
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
     public ResponseEntity<?>save(@Valid @RequestBody PropositionDto propositionDto) {
-        return new ResponseEntity<>(propositionService.save(propositionDto), HttpStatus.OK);
+        return new ResponseEntity<>(propositionService.save(propositionDto), HttpStatus.ACCEPTED);
     }
 
     @ApiOperation(value = "update")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping(value = "/")
-    public ResponseEntity<?>update(@RequestParam Long id, @RequestBody PropositionDto propositionDto) {
-        return new ResponseEntity<>(propositionService.update(id, propositionDto), HttpStatus.OK);
+    public ResponseEntity<?>update(@RequestParam Long id,@Valid @RequestBody PropositionDto propositionDto) {
+        return new ResponseEntity<>(propositionService.update(id, propositionDto), HttpStatus.ACCEPTED);
     }
 
     @ApiOperation(value = "delete")

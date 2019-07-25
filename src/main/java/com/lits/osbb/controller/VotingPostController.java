@@ -23,7 +23,7 @@ public class VotingPostController {
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
     public ResponseEntity<?> save(@Valid @RequestBody VotingPostDto votingPostDto) {
-        return new ResponseEntity<>(votingPostService.save(votingPostDto), HttpStatus.OK);
+        return new ResponseEntity<>(votingPostService.save(votingPostDto), HttpStatus.ACCEPTED);
     }
 
     @ApiOperation(value = "getAll")
@@ -53,8 +53,8 @@ public class VotingPostController {
     @ApiOperation(value = "update")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping(value = "/")
-    public ResponseEntity<?> update(@RequestParam Long id, @RequestBody VotingPostDto votingPostDto) {
-        return new ResponseEntity<>(votingPostService.update(id, votingPostDto), HttpStatus.OK);
+    public ResponseEntity<?> update(@RequestParam Long id, @Valid @RequestBody VotingPostDto votingPostDto) {
+        return new ResponseEntity<>(votingPostService.update(id, votingPostDto), HttpStatus.ACCEPTED);
     }
 
     @ApiOperation(value = "delete")
