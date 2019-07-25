@@ -20,4 +20,3 @@ public interface VotingPostService {
 
     void delete(VotingPostDto votingPostDto);
 }
-

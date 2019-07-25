@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-
 @Service
 public class VotingPostServiceImpl implements VotingPostService {
 
@@ -37,7 +36,6 @@ public class VotingPostServiceImpl implements VotingPostService {
                 .map(e -> modelMapper.map(e,VotingPostDto.class))
                 .orElseThrow(()->new NotFoundException("VotingPost with ID: "+id+" not found"));
     }
-
 
     @Override
     public VotingPostDto findOneByTitle(String title) {
@@ -83,5 +81,14 @@ public class VotingPostServiceImpl implements VotingPostService {
     public void delete(VotingPostDto votingPostDto) {
         votingPostRepository.delete(modelMapper.map(votingPostDto,VotingPost.class));
     }
+
+
+    @Override
+    public List<VotingPostDto> findAll(){
+        return votingPostRepository.findAll().stream()
+                .map(e->modelMapper.map(e,VotingPostDto.class))
+                .collect(Collectors.toList());
+    }
+
 }
 
