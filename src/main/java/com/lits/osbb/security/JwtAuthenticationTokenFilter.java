@@ -42,7 +42,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 .map(token -> token.substring(BEARER_TYPE.length() + 1))
                 .map(token -> tokenService.parseToken(token)).orElse(null);
 
-        logger.info("checking authentication for user " + accountId);
+        log.info("checking authentication for user " + accountId);
 
         if (accountId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             JwtUser jwtUser = JwtUserFactory.create(accountId, userService.getAuthority(modelMapper.map(userService.findOne(accountId), User.class)));

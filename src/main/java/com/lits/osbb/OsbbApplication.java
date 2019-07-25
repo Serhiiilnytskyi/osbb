@@ -1,6 +1,9 @@
 package com.lits.osbb;
 
 import com.lits.osbb.config.WeatherAppProperties;
+import com.lits.osbb.model.Osbb;
+import com.lits.osbb.model.Role;
+import com.lits.osbb.model.User;
 import com.lits.osbb.repository.OsbbRepository;
 import com.lits.osbb.repository.RoleRepository;
 import com.lits.osbb.repository.UserRepository;
@@ -11,6 +14,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.HashSet;
 
 @SpringBootApplication
 @EnableConfigurationProperties(WeatherAppProperties.class)
