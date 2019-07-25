@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class VotingPostServiceImpl implements VotingPostService {
@@ -29,6 +30,7 @@ public class VotingPostServiceImpl implements VotingPostService {
     }
 
     @Override
+
     public VotingPostDto findOne(Long id) {
         return Optional.ofNullable(votingPostRepository.findById(id))
                 .map(e -> modelMapper.map(e,VotingPostDto.class))
@@ -49,12 +51,6 @@ public class VotingPostServiceImpl implements VotingPostService {
                 .orElseThrow(()->new NotFoundException("VotingPost with author: "+author+" not found"));
     }
 
-    @Override
-    public List<VotingPostDto> findAll() {
-        return votingPostRepository.findAll().stream()
-                .map(e->modelMapper.map(e,VotingPostDto.class))
-                .collect(Collectors.toList());
-    }
 
     @Override
     public VotingPostDto save(VotingPostDto votingPostDto) {
@@ -81,4 +77,12 @@ public class VotingPostServiceImpl implements VotingPostService {
     public void delete(VotingPostDto votingPostDto) {
         votingPostRepository.delete(modelMapper.map(votingPostDto,VotingPost.class));
     }
+
+    @Override
+    public List<VotingPostDto> findAll(){
+        return votingPostRepository.findAll().stream()
+                .map(e->modelMapper.map(e,VotingPostDto.class))
+                .collect(Collectors.toList());
+    }
+
 }

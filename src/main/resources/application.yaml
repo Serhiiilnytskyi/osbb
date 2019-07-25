@@ -4,12 +4,12 @@ spring:
     database: mysql
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
 
   datasource:
     url: jdbc:mysql://localhost:3306/osbb?serverTimezone=UTC
-    username: u5
-    password:
+    username: root
+    password: root
 
   liquibase:
     change-log: classpath:/changelog/db.changelog-master.yaml

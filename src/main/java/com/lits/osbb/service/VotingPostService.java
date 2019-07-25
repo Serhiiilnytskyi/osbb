@@ -19,4 +19,6 @@ public interface VotingPostService {
     VotingPostDto update(Long id , VotingPostDto votingPostDto);
 
     void delete(VotingPostDto votingPostDto);
+
+
 }
