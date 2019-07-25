@@ -49,12 +49,6 @@ public class VotingPostServiceImpl implements VotingPostService {
                 .orElseThrow(()->new NotFoundException("VotingPost with author: "+author+" not found"));
     }
 
-    //@Override
-    public VotingPostDto getById(Long id){
-        VotingPost votingPost = votingPostRepository.findById(id).orElseThrow(()->new NotFoundException("Vote with ID: " + id +" not found"));
-        return modelMapper.map(votingPost, VotingPostDto.class);
-
-    }
 
     @Override
     public VotingPostDto save(VotingPostDto votingPostDto) {

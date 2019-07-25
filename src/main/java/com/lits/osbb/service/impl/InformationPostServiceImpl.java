@@ -1,6 +1,7 @@
 package com.lits.osbb.service.impl;
 
 import com.lits.osbb.dto.InformationPostDto;
+import com.lits.osbb.exception.NotFoundException;
 import com.lits.osbb.model.InformationPost;
 import com.lits.osbb.repository.InformationPostRepository;
 import org.modelmapper.ModelMapper;
@@ -25,7 +26,7 @@ public class InformationPostServiceImpl implements com.lits.osbb.service.Informa
     public InformationPostDto findOne(Long id){
         return Optional.ofNullable(informationPostRepository.findOneById(id))
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
-                .orElse(new InformationPostDto());
+                .orElseThrow(() -> new NotFoundException( "Did not find "+ id +" post "));
     }
     @Override
     public List<InformationPostDto> findAll(){
@@ -39,7 +40,7 @@ public class InformationPostServiceImpl implements com.lits.osbb.service.Informa
                 .map(e -> modelMapper.map(e, InformationPost.class))
                 .map(e -> informationPostRepository.save(e))
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
-                .orElse(new InformationPostDto());
+                .orElseThrow(() -> new NotFoundException( "Did not save "+ informationPostDto +" post "));
     }
     @Override
     public InformationPostDto update(InformationPostDto informationPostDto){
@@ -47,7 +48,7 @@ public class InformationPostServiceImpl implements com.lits.osbb.service.Informa
             .map(e -> modelMapper.map(e, InformationPost.class))
             .map(e -> informationPostRepository.save(e))
             .map(e -> modelMapper.map(e, InformationPostDto.class))
-            .orElse(new InformationPostDto());};
+                .orElseThrow(() -> new NotFoundException( "Did not update "+ informationPostDto +" post "));};
     @Override
     public void delete(InformationPostDto informationPostDto){
         informationPostRepository.delete(modelMapper.map(informationPostDto, InformationPost.class));
