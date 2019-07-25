@@ -50,14 +50,14 @@ public class InformationPostController {
     @ApiOperation(value = "save")
     @PostMapping(value = "/")
     ResponseEntity<?> save(@Valid @RequestBody InformationPostDto informationPostDto) {
-        return new ResponseEntity<>(informationPostService.save(informationPostDto), HttpStatus.OK);
+        return new ResponseEntity<>(informationPostService.save(informationPostDto), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "update")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping(value = "/{id}")
     ResponseEntity<?> update( @RequestParam Long id, @Valid @RequestBody InformationPostDto informationPostDto) {
-        return new ResponseEntity<>(informationPostService.update(id, informationPostDto), HttpStatus.OK);
+        return new ResponseEntity<>(informationPostService.update(id, informationPostDto), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "delete")
