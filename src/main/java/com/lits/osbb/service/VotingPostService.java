@@ -22,3 +22,4 @@ public interface VotingPostService {
 
     void delete(Long id);
 }
+
