@@ -19,4 +19,8 @@ security:
     secret: 9DKxk4ZuopLtywwSoyIR45mdLOiPa1zw
     expire: 24
 
-
+app:
+  weather:
+    api:
+      url: http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={key}
+      key: 6a4aab2f0bfdd22abd9ce388ce4ef89b

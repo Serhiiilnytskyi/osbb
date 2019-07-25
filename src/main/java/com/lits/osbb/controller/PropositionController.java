@@ -52,6 +52,7 @@ public class PropositionController {
     @PutMapping(value = "/update")
     public ResponseEntity<PropositionDto> update(@RequestBody PropositionDto propositionDto){
         return new ResponseEntity<>(propositionService.update(propositionDto), HttpStatus.OK);
+
     }
 
     @ApiOperation(value = "delete")
