@@ -17,7 +17,5 @@ public interface PropositionRepository extends CrudRepository<Proposition, Long>
     Proposition findOneByTitle(String title);
 
     Proposition save(Proposition e);
-
-    void delete(Proposition e);
 }
 

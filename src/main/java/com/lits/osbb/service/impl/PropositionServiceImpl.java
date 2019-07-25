@@ -57,16 +57,19 @@ public class PropositionServiceImpl implements PropositionService {
     }
 
     @Override
-    public PropositionDto update(PropositionDto propositionDto) {
-        return Optional.ofNullable(propositionDto)
+    public PropositionDto update(Long id, PropositionDto propositionDto) {
+        Proposition proposition = Optional.of(propositionDto)
                 .map(e -> modelMapper.map(e, Proposition.class))
-                .map(e -> propositionRepository.save(e))
+                .orElseThrow(() -> new NotFoundException("PropositionDto Object is null. Nothing to update"));
+        proposition.setId(id);
+
+        return Optional.of(propositionRepository.save(proposition))
                 .map(e -> modelMapper.map(e, PropositionDto.class))
-                .orElseThrow(()->new NotFoundException("PropositionDto could not be update"));
+                .orElseThrow(() -> new NotFoundException("Proposition not saved"));
     }
 
     @Override
-    public void delete(PropositionDto propositionDto) {
-        propositionRepository.delete(modelMapper.map(propositionDto, Proposition.class));
+    public void delete(Long id) {
+        propositionRepository.deleteById(id);
     }
 }

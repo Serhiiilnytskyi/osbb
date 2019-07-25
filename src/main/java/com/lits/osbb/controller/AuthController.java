@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class AuthController {
 
@@ -20,13 +22,13 @@ public class AuthController {
 
     @ApiOperation(value = "login")
     @PostMapping(value = "/login")
-    public ResponseEntity<?> auth(@RequestBody AuthRequest auth) {
+    public ResponseEntity<?> auth(@Valid @RequestBody AuthRequest auth) {
         return ResponseEntity.ok(authService.auth(auth.getEmail(), auth.getPassword()));
     }
 
     @ApiOperation(value = "registration")
     @PostMapping(value = "/registration")
-    public ResponseEntity<?> registration(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> registration(@Valid @RequestBody UserDto userDto) {
         return ResponseEntity.ok(authService.registration(userDto));
     }
 

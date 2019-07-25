@@ -3,13 +3,12 @@ package com.lits.osbb.controller;
 import com.lits.osbb.dto.OsbbDto;
 import com.lits.osbb.service.OsbbService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/osbbs")
@@ -21,39 +20,37 @@ public class OsbbController {
         this.osbbService = osbbService;
     }
 
-    @ApiOperation(value = "save")
-    @PostMapping(value = "/")
-    public OsbbDto save(@Validated @RequestBody OsbbDto osbbDto) {
-        return osbbService.save(osbbDto);
-    }
-
     @ApiOperation(value = "getAll")
-    @GetMapping(value = "/getAll")
-    public List<OsbbDto> findAll() {
-        return osbbService.findAll();
+    @GetMapping(value = "/")
+    public ResponseEntity<?> findAll() {
+        return new ResponseEntity<>(osbbService.findAll(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "getOneById")
-    @GetMapping(value = "/getOneById/{id}")
-    public OsbbDto findOne(@RequestParam(value = "id", defaultValue = "") Long id) {
-        return osbbService.findOne(id);
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> findOne(@RequestParam Long id) {
+        return new ResponseEntity<>(osbbService.findOne(id), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "save")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping(value = "/")
+    public ResponseEntity<?> save(@Valid @RequestBody OsbbDto osbbDto) {
+        return new ResponseEntity<>(osbbService.save(osbbDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "update")
-    @PutMapping(value = "/update/{id}")
-    public OsbbDto update(@RequestParam Long id, @RequestBody OsbbDto osbbDto) {
-        return osbbService.update(id, osbbDto);
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> update(@RequestParam Long id, @Valid @RequestBody OsbbDto osbbDto) {
+        return new ResponseEntity<>(osbbService.update(id, osbbDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "delete")
-    @DeleteMapping(value = "/delete/{osbbDto}")
-    public ResponseEntity<OsbbDto> delete(@RequestParam(value = "osbbDto") OsbbDto osbbDto) {
-        return new ResponseEntity<>(osbbDto, HttpStatus.OK);
-    }
-
-    @ApiOperation(value = "deleteOneById")
-    @DeleteMapping(value = "/deleteOneById/{id}")
-    public ResponseEntity<Long> delete(@RequestParam(value = "id") Long id) {
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@RequestParam Long id) {
+        osbbService.delete(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 

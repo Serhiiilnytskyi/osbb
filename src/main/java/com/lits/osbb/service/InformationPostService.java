@@ -12,9 +12,11 @@ public interface InformationPostService {
 
     InformationPostDto save(InformationPostDto informationPostDto);
 
-    InformationPostDto update(InformationPostDto informationPostDto);
-
-    void delete(InformationPostDto informationPostDto);
-
     void delete(Long id);
+
+    InformationPostDto findOneByTitle(String title);
+
+    InformationPostDto findOneByAuthor(String author);
+
+    InformationPostDto update(Long id, InformationPostDto informationPostDto);
 }

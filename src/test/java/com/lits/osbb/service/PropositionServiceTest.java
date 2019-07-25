@@ -94,7 +94,7 @@ public class PropositionServiceTest {
         when(propositionRepository.save(proposition)).thenReturn(proposition);
         when(modelMapper.map(proposition,PropositionDto.class)).thenReturn(propositionDto);
 
-        assertEquals(propositionDto,propositionService.update(propositionDto));
+        assertEquals(propositionDto,propositionService.update(1L, propositionDto));
         assertNotNull(propositionDto);
     }
 }
