@@ -1,7 +1,9 @@
 package com.lits.osbb.service.impl;
 
+import com.lits.osbb.dto.OsbbDto;
 import com.lits.osbb.dto.VotingPostDto;
 import com.lits.osbb.exception.NotFoundException;
+import com.lits.osbb.model.Osbb;
 import com.lits.osbb.model.VotingPost;
 import com.lits.osbb.repository.VotingPostRepository;
 import com.lits.osbb.service.VotingPostService;
@@ -51,6 +53,13 @@ public class VotingPostServiceImpl implements VotingPostService {
 
 
     @Override
+    public VotingPostDto getById(Long id){
+        VotingPost votingPost = votingPostRepository.findById(id).orElseThrow(()->new NotFoundException("Vote with ID: " + id +" not found"));
+        return modelMapper.map(votingPost, VotingPostDto.class);
+
+    }
+
+    @Override
     public VotingPostDto save(VotingPostDto votingPostDto) {
         return Optional.of(votingPostDto)
                 .map(e -> modelMapper.map(e, VotingPost.class))
@@ -73,6 +82,7 @@ public class VotingPostServiceImpl implements VotingPostService {
         votingPostRepository.delete(modelMapper.map(votingPostDto,VotingPost.class));
     }
 
+
     @Override
     public List<VotingPostDto> findAll(){
         return votingPostRepository.findAll().stream()
@@ -81,3 +91,4 @@ public class VotingPostServiceImpl implements VotingPostService {
     }
 
 }
+

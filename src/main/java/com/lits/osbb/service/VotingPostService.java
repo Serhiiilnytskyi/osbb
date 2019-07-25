@@ -19,6 +19,4 @@ public interface VotingPostService {
     VotingPostDto update(VotingPostDto votingPostDto);
 
     void delete(VotingPostDto votingPostDto);
-
-
 }
