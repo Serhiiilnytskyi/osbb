@@ -1,7 +1,9 @@
 package com.lits.osbb.service.impl;
 
+import com.lits.osbb.dto.OsbbDto;
 import com.lits.osbb.dto.VotingPostDto;
 import com.lits.osbb.exception.NotFoundException;
+import com.lits.osbb.model.Osbb;
 import com.lits.osbb.model.VotingPost;
 import com.lits.osbb.repository.VotingPostRepository;
 import com.lits.osbb.service.VotingPostService;
@@ -28,7 +30,7 @@ public class VotingPostServiceImpl implements VotingPostService {
 
     @Override
     public VotingPostDto findOne(Long id) {
-        return Optional.ofNullable(votingPostRepository.findOne(id))
+        return Optional.ofNullable(votingPostRepository.findById(id))
                 .map(e -> modelMapper.map(e,VotingPostDto.class))
                 .orElseThrow(()->new NotFoundException("VotingPost with ID: "+id+" not found"));
     }
@@ -64,12 +66,15 @@ public class VotingPostServiceImpl implements VotingPostService {
     }
 
     @Override
-    public VotingPostDto update(VotingPostDto votingPostDto) {
-        return Optional.of(votingPostDto)
+    public VotingPostDto update(Long id ,VotingPostDto votingPostDto) {
+        VotingPost votingPost = Optional.of(votingPostDto)
                 .map(e -> modelMapper.map(e, VotingPost.class))
-                .map(e -> votingPostRepository.update(e))
+                .orElseThrow(() -> new NotFoundException("VotingPost Object is null. Nothing to update"));
+        votingPost.setId(id);
+
+        return Optional.of(votingPostRepository.save(votingPost))
                 .map(e -> modelMapper.map(e, VotingPostDto.class))
-                .orElseThrow(() -> new NotFoundException("VotingPost could not be update"));
+                .orElseThrow(() -> new NotFoundException("VotingPost not saved"));
     }
 
     @Override
