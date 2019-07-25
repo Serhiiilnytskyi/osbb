@@ -24,7 +24,7 @@ public class InformationPostServiceImpl implements com.lits.osbb.service.Informa
 
     @Override
     public InformationPostDto findOne(Long id){
-        return Optional.ofNullable(informationPostRepository.findOneById(id))
+        return informationPostRepository.findById(id)
                 .map(e -> modelMapper.map(e, InformationPostDto.class))
                 .orElseThrow(() -> new NotFoundException( "Did not find "+ id +" post "));
     }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table
-public class InformationPost implements Post {
+public class InformationPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

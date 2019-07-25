@@ -29,7 +29,7 @@ public class InformationPostController {
     @ApiOperation(value = "getOneById")
     @GetMapping(value = "/{id}")
     ResponseEntity<?> findOne(@RequestParam (value = "id",defaultValue = "") Long id){
-        return new ResponseEntity(informationPostService.findOne(id), HttpStatus.OK);
+        return new ResponseEntity(informationPostService.findById(id), HttpStatus.OK);
     }
     @ApiOperation(value = "delete")
     @PostMapping(value = "/delete/{id}")

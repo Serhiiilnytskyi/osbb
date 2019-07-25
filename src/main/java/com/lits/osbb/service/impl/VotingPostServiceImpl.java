@@ -32,7 +32,7 @@ public class VotingPostServiceImpl implements VotingPostService {
     @Override
 
     public VotingPostDto findOne(Long id) {
-        return Optional.ofNullable(votingPostRepository.findOne(id))
+        return Optional.ofNullable(votingPostRepository.findById(id))
                 .map(e -> modelMapper.map(e,VotingPostDto.class))
                 .orElseThrow(()->new NotFoundException("VotingPost with ID: "+id+" not found"));
     }
@@ -72,7 +72,7 @@ public class VotingPostServiceImpl implements VotingPostService {
     public VotingPostDto update(VotingPostDto votingPostDto) {
         return Optional.of(votingPostDto)
                 .map(e -> modelMapper.map(e, VotingPost.class))
-                .map(e -> votingPostRepository.update(e))
+                .map(e -> votingPostRepository.save(e))
                 .map(e -> modelMapper.map(e, VotingPostDto.class))
                 .orElseThrow(() -> new NotFoundException("VotingPost could not be update"));
     }
