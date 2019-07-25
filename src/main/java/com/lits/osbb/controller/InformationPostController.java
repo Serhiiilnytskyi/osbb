@@ -9,12 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/informationPosts")
+@RequestMapping(value = "/informationPosts")
 public class InformationPostController {
 
     private InformationPostRepository informationPostService;
 
-    @Autowired
     public InformationPostController(InformationPostRepository informationPostRepository) {
         this.informationPostService = informationPostRepository;
     }

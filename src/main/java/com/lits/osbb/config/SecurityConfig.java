@@ -29,14 +29,19 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] AUTH_WHITELIST = {
+    private static final String[] BASE_WHITELIST = {
             "/swagger-resources/**",
             "/swagger-ui.html",
             "/v2/api-docs",
             "/webjars/**",
             "favicon.ico",
-            "/auth/**",
             "/"
+    };
+
+    private static final String[] AUTH_WHITELIST = {
+            "/api/login",
+            "/api/registration",
+            "/login"
     };
 
     @Resource(name = "userService")
@@ -81,11 +86,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/login", "/weather_search")
+                .antMatchers(HttpMethod.POST, AUTH_WHITELIST)
                 .permitAll()
-                .antMatchers("/actuator/**", "/weather_search")
-                .hasAuthority("ROLE_ADMIN")
-                .antMatchers(HttpMethod.GET, AUTH_WHITELIST)
+                .antMatchers(HttpMethod.GET, BASE_WHITELIST)
                 .permitAll()
                 .anyRequest().authenticated();
 

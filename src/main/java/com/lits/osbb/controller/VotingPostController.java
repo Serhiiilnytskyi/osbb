@@ -12,12 +12,11 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/votingposts")
+@RequestMapping(value = "/votingposts")
 public class VotingPostController {
 
     private VotingPostService votingPostService;
 
-    @Autowired
     public VotingPostController(VotingPostService votingPostService) {
         this.votingPostService = votingPostService;
     }

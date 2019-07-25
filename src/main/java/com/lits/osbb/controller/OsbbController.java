@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/osbbs")
+@RequestMapping(value = "/osbbs")
 public class OsbbController {
 
     private OsbbService osbbService;
 
-    @Autowired
     public OsbbController(OsbbService osbbService) {
         this.osbbService = osbbService;
     }

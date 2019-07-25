@@ -14,12 +14,11 @@ import java.util.List;
 
 @Api
 @RestController
-@RequestMapping(value = "/api/propositions")
+@RequestMapping(value = "/propositions")
 public class PropositionController {
 
     private PropositionService propositionService;
 
-    @Autowired
     public PropositionController(PropositionService propositionService) {
         this.propositionService = propositionService;
     }
